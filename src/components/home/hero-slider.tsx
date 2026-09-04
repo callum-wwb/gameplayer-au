@@ -37,17 +37,17 @@ export function HeroSlider({ articles }: { articles: Article[] }) {
       <CoverArt
         title=""
         hue={current.hue}
-        className="aspect-16/9 min-h-[320px] sm:min-h-[420px]"
+        className="aspect-16/9 min-h-[280px] sm:min-h-[360px] lg:min-h-[420px]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/10" />
-      <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-8">
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/15" />
+      <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-7">
         <div className="mb-3 flex flex-wrap items-center gap-2">
           <Badge>{articleTypes[current.type].label}</Badge>
           {current.featured ? <Badge variant="outline">Featured</Badge> : null}
         </div>
         <div className="flex items-end gap-4">
           <div className="min-w-0">
-            <h1 className="font-heading text-3xl font-bold tracking-tight text-balance text-white sm:text-5xl">
+            <h1 className="font-heading text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl lg:text-5xl">
               <Link href={`/${current.slug}/`} className="hover:text-primary">
                 {current.title}
               </Link>
@@ -57,7 +57,11 @@ export function HeroSlider({ articles }: { articles: Article[] }) {
             </p>
           </div>
           {current.score !== undefined ? (
-            <ScoreBadge score={current.score} size="lg" className="hidden sm:flex" />
+            <ScoreBadge
+              score={current.score}
+              size="lg"
+              className="hidden sm:flex"
+            />
           ) : null}
         </div>
         <div className="mt-5 flex items-center gap-2">
