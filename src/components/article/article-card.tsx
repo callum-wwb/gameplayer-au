@@ -11,7 +11,7 @@ export function ArticleCard({
   variant = "grid",
 }: {
   article: Article;
-  variant?: "grid" | "row";
+  variant?: "grid" | "row" | "teaser";
 }) {
   if (variant === "row") {
     return (
@@ -39,6 +39,44 @@ export function ArticleCard({
           <ScoreBadge score={article.score} size="sm" className="self-center" />
         ) : null}
       </Link>
+    );
+  }
+
+  if (variant === "teaser") {
+    return (
+      <article className="group flex flex-col overflow-hidden rounded-xl border border-border/70 bg-card/50">
+        <Link href={`/${article.slug}/`} className="relative block">
+          <CoverArt
+            title={article.gameTitle ?? article.title}
+            hue={article.hue}
+            kicker={articleTypes[article.type].label}
+            className="aspect-16/10"
+          />
+          {article.score !== undefined ? (
+            <ScoreBadge
+              score={article.score}
+              size="sm"
+              className="absolute top-2 right-2"
+            />
+          ) : null}
+        </Link>
+        <div className="flex flex-1 flex-col gap-2 p-3">
+          <h3 className="font-heading text-base leading-snug font-semibold text-balance">
+            <Link href={`/${article.slug}/`} className="hover:text-primary">
+              {article.title}
+            </Link>
+          </h3>
+          <p className="text-xs text-muted-foreground">
+            {formatDate(article.publishedAt)}
+          </p>
+          <Link
+            href={`/${article.slug}/`}
+            className="mt-auto pt-1 text-sm font-medium text-primary hover:underline"
+          >
+            Read more »
+          </Link>
+        </div>
+      </article>
     );
   }
 

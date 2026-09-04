@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "GamePlayer",
   tagline: "News and Gaming Reviews",
+  slogan: "Don't hate the Game, hate the Player",
   title: "GamePlayer | News and Gaming Reviews",
   description:
     "GamePlayer brings a fresh perspective on the world of video gaming. From Xbox to Playstation, PC to Mac, Nintendo to Atari, all the latest reviews, opinions and news can be found on GamePlayer",
@@ -120,6 +121,24 @@ export const platformNav = [
   platforms.playstation,
   platforms.xbox,
   platforms.nintendo,
+] as const;
+
+export const classicPlatforms = [
+  platforms.pc,
+  platforms.mobile,
+  platforms.classic,
+] as const;
+
+export const extraPlatforms = [
+  platforms.playstation,
+  platforms.xbox,
+  platforms.nintendo,
+] as const;
+
+export const originalHubs = [
+  { label: "Dota 2", href: "/games/dota-2/" },
+  { label: "Skyrim", href: "/games/skyrim/" },
+  { label: "Starcraft 2", href: "/games/starcraft-2/" },
 ] as const;
 
 export const authors = {
