@@ -37,6 +37,10 @@ export default function OpenGraphImage() {
           <div style={{ marginTop: 24, fontSize: 28, color: "#c9d0dc" }}>
             From Xbox to PlayStation, PC to Mac, Nintendo to Atari.
           </div>
+          <div style={{ marginTop: 28, fontSize: 20, color: "#9aa3b5" }}>
+            Game titles and trademarks belong to their respective owners — not
+            GamePlayer.
+          </div>
         </div>
       </div>
     ),

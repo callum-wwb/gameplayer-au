@@ -118,7 +118,7 @@ export const platforms: Record<
     href: "/playstation",
     short: "PS",
     description:
-      "PS5, Plus extras, and first-party showcases with an Australian release lens.",
+      "Best PS5 games in 2026, Plus Extra and Premium, and first-party showcases with Australian pricing.",
   },
   xbox: {
     label: "Xbox",
@@ -132,7 +132,7 @@ export const platforms: Record<
     href: "/nintendo",
     short: "Switch",
     description:
-      "Switch, Switch 2, and Nintendo Direct fallout — handheld first, always.",
+      "Switch 2, Mario Kart World, Silksong, and Nintendo Direct fallout — handheld first, always.",
   },
 };
 

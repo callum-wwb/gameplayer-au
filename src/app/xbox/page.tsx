@@ -3,8 +3,9 @@ import { getArticlesByPlatform } from "@/lib/content";
 import { platforms } from "@/lib/site";
 
 export const metadata = {
-  title: platforms.xbox.label,
-  description: platforms.xbox.description,
+  title: "Xbox and Game Pass games Australia",
+  description:
+    "Game Pass, Series hardware, and multiplatform reviews — Expedition 33, Wilds, Elden Ring — from GamePlayer AU.",
 };
 
 export default function XboxPage() {

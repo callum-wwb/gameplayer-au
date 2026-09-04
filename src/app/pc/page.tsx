@@ -3,8 +3,9 @@ import { getArticlesByPlatform } from "@/lib/content";
 import { platforms } from "@/lib/site";
 
 export const metadata = {
-  title: platforms.pc.label,
-  description: platforms.pc.description,
+  title: "PC game reviews Australia",
+  description:
+    "Silksong, Expedition 33, Monster Hunter Wilds, Elden Ring, and the rest of GamePlayer's PC coverage from Australia.",
 };
 
 export default function PcPage() {

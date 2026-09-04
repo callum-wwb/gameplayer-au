@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { CoverArt } from "@/components/article/cover-art";
 import { ScoreBadge } from "@/components/article/score-badge";
+import { GameCover } from "@/components/media/game-cover";
 import { Badge } from "@/components/ui/badge";
+import { resolveArticleCover } from "@/lib/article-covers";
 import { formatDate } from "@/lib/content";
 import { articleTypes, platforms } from "@/lib/site";
 import type { Article } from "@/lib/types";
@@ -13,16 +14,20 @@ export function ArticleCard({
   article: Article;
   variant?: "grid" | "row" | "teaser";
 }) {
+  const media = resolveArticleCover(article);
+
   if (variant === "row") {
     return (
       <Link
         href={`/${article.slug}/`}
         className="group flex gap-3 rounded-xl border border-border/70 bg-card/40 p-2 transition-colors hover:border-primary/40 hover:bg-card"
       >
-        <CoverArt
-          title={article.gameTitle ?? article.title}
+        <GameCover
+          media={media}
           hue={article.hue}
+          credit="compact"
           className="h-20 w-28 shrink-0 rounded-lg"
+          sizes="112px"
         />
         <div className="min-w-0 py-0.5">
           <p className="text-[11px] font-semibold tracking-wider text-primary uppercase">
@@ -46,17 +51,19 @@ export function ArticleCard({
     return (
       <article className="group flex flex-col overflow-hidden rounded-xl border border-border/70 bg-card/50">
         <Link href={`/${article.slug}/`} className="relative block">
-          <CoverArt
-            title={article.gameTitle ?? article.title}
+          <GameCover
+            media={media}
             hue={article.hue}
             kicker={articleTypes[article.type].label}
+            credit="overlay"
             className="aspect-16/10"
+            sizes="(max-width: 640px) 100vw, 25vw"
           />
           {article.score !== undefined ? (
             <ScoreBadge
               score={article.score}
               size="sm"
-              className="absolute top-2 right-2"
+              className="absolute top-2 right-2 z-20"
             />
           ) : null}
         </Link>
@@ -86,16 +93,18 @@ export function ArticleCard({
       className="group flex flex-col overflow-hidden rounded-xl border border-border/70 bg-card/50 transition-colors hover:border-primary/40"
     >
       <div className="relative">
-        <CoverArt
-          title={article.gameTitle ?? article.title}
+        <GameCover
+          media={media}
           hue={article.hue}
           kicker={articleTypes[article.type].label}
+          credit="overlay"
           className="aspect-16/10"
+          sizes="(max-width: 768px) 100vw, 33vw"
         />
         {article.score !== undefined ? (
           <ScoreBadge
             score={article.score}
-            className="absolute top-3 right-3"
+            className="absolute top-3 right-3 z-20"
           />
         ) : null}
       </div>

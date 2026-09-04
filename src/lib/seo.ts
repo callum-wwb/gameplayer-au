@@ -1,3 +1,4 @@
+import type { CoverMedia } from "@/lib/media";
 import { authors, siteConfig, absoluteUrl } from "@/lib/site";
 import type { Article } from "@/lib/types";
 
@@ -38,7 +39,7 @@ export function websiteJsonLd() {
   };
 }
 
-export function articleJsonLd(article: Article) {
+export function articleJsonLd(article: Article, media?: CoverMedia) {
   const author = authors[article.author];
   const url = absoluteUrl(`/${article.slug}/`);
 
@@ -56,6 +57,7 @@ export function articleJsonLd(article: Article) {
       "@type": "Person",
       name: author.name,
       jobTitle: author.role,
+      url: absoluteUrl(`/authors/${author.slug}/`),
     },
     publisher: {
       "@type": "Organization",
@@ -65,7 +67,19 @@ export function articleJsonLd(article: Article) {
         url: absoluteUrl("/icon"),
       },
     },
-    image: absoluteUrl(`/${article.slug}/opengraph-image`),
+    image: media
+      ? {
+          "@type": "ImageObject",
+          url: absoluteUrl(media.src || `/${article.slug}/opengraph-image`),
+          caption: media.alt,
+          creditText: media.creditLine,
+          copyrightNotice: media.creditLine,
+          copyrightHolder: {
+            "@type": "Organization",
+            name: media.copyrightOwner,
+          },
+        }
+      : absoluteUrl(`/${article.slug}/opengraph-image`),
   };
 
   if (article.type === "review" && article.score !== undefined) {
@@ -89,6 +103,39 @@ export function articleJsonLd(article: Article) {
   }
 
   return base;
+}
+
+export function faqPageJsonLd(
+  faq: { question: string; answer: string }[],
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+export function personJsonLd(authorSlug: keyof typeof authors) {
+  const author = authors[authorSlug];
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: author.name,
+    jobTitle: author.role,
+    description: author.bio,
+    url: absoluteUrl(`/authors/${author.slug}/`),
+    worksFor: {
+      "@type": "Organization",
+      name: siteConfig.name,
+    },
+  };
 }
 
 export function breadcrumbJsonLd(

@@ -1,13 +1,16 @@
 import type { MetadataRoute } from "next";
 import { getAllArticles } from "@/lib/content";
-import { gameHubs } from "@/lib/games";
-import { absoluteUrl, articleTypes, platforms } from "@/lib/site";
+import { getListedHubs } from "@/lib/games";
+import { absoluteUrl, articleTypes, authors, platforms } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/about",
+    "/credits",
+    "/games",
     "/search",
+    ...Object.values(authors).map((author) => `/authors/${author.slug}`),
     ...Object.values(articleTypes).map((item) => item.href),
     ...Object.values(platforms).map((item) => item.href),
   ];
@@ -19,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily" as const,
       priority: path === "" ? 1 : 0.7,
     })),
-    ...gameHubs.map((game) => ({
+    ...getListedHubs().map((game) => ({
       url: absoluteUrl(`/games/${game.slug}/`),
       lastModified: new Date(),
       changeFrequency: "weekly" as const,

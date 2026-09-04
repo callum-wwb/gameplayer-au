@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Gamepad2, Monitor, Smartphone, Joystick } from "lucide-react";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { SearchForm } from "@/components/layout/search-form";
-import { gameHubs } from "@/lib/games";
+import { getEvergreenHubs } from "@/lib/games";
 import {
   classicPlatforms,
   extraPlatforms,
@@ -18,7 +18,7 @@ const classicIcons = {
 } as const;
 
 export function SiteHeader() {
-  const extraHubs = gameHubs.filter(
+  const extraHubs = getEvergreenHubs().filter(
     (game) => !originalHubs.some((hub) => hub.href.includes(game.slug)),
   );
 
@@ -77,6 +77,12 @@ export function SiteHeader() {
               {game.shortTitle}
             </Link>
           ))}
+          <Link
+            href="/games/"
+            className="text-sm text-muted-foreground transition-colors hover:text-primary"
+          >
+            All hubs
+          </Link>
         </div>
       </nav>
 

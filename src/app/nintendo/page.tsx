@@ -3,8 +3,9 @@ import { getArticlesByPlatform } from "@/lib/content";
 import { platforms } from "@/lib/site";
 
 export const metadata = {
-  title: platforms.nintendo.label,
-  description: platforms.nintendo.description,
+  title: "Nintendo Switch 2 games Australia",
+  description:
+    "Mario Kart World, Donkey Kong Bananza, Silksong, and Switch 2 coverage from GamePlayer in Australia.",
 };
 
 export default function NintendoPage() {
