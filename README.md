@@ -62,8 +62,8 @@ If the key is missing, the API returns a graceful empty snapshot with an explana
 
 1. Import this GitHub repo in [Vercel](https://vercel.com/new).
 2. Framework preset: **Next.js**. Build command `npm run build`, output detected automatically.
-3. Add environment variables:
-   - `NEXT_PUBLIC_SITE_URL` = `https://www.gameplayer.com.au` (or the preview URL while testing)
+3. Add environment variables (Project → Settings → Environment Variables):
+   - `NEXT_PUBLIC_SITE_URL` = `https://www.gameplayer.com.au` for Production. For Preview you may use the Vercel preview URL **or** the same production origin. **Never set this to a blank value** — empty strings skip the code fallback and used to crash `metadataBase` / `/_not-found` with `ERR_INVALID_URL`. If you do not want a custom origin, delete the variable so the app uses `https://www.gameplayer.com.au`.
    - `SERPAPI_API_KEY` = your server-only key (Production / Preview as needed)
 4. Deploy.
 

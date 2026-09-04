@@ -1,3 +1,33 @@
+export const DEFAULT_SITE_URL = "https://www.gameplayer.com.au";
+
+export function resolveSiteUrl(
+  raw: string | undefined = process.env.NEXT_PUBLIC_SITE_URL,
+): string {
+  const candidate = raw?.trim();
+  if (!candidate) {
+    return DEFAULT_SITE_URL;
+  }
+
+  try {
+    const parsed = new URL(candidate);
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+      return DEFAULT_SITE_URL;
+    }
+    return parsed.origin;
+  } catch {
+    return DEFAULT_SITE_URL;
+  }
+}
+
+export function siteUrlObject(raw?: string): URL {
+  const value = resolveSiteUrl(raw);
+  try {
+    return new URL(value);
+  } catch {
+    return new URL(DEFAULT_SITE_URL);
+  }
+}
+
 export const siteConfig = {
   name: "GamePlayer",
   tagline: "News and Gaming Reviews",
@@ -5,7 +35,7 @@ export const siteConfig = {
   title: "GamePlayer | News and Gaming Reviews",
   description:
     "GamePlayer brings a fresh perspective on the world of video gaming. From Xbox to Playstation, PC to Mac, Nintendo to Atari, all the latest reviews, opinions and news can be found on GamePlayer",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gameplayer.com.au",
+  url: resolveSiteUrl(),
   locale: "en_AU",
   language: "en-AU",
   country: "Australia",
@@ -177,7 +207,10 @@ export const authors = {
 export type AuthorSlug = keyof typeof authors;
 
 export function absoluteUrl(path = "/") {
-  const base = siteConfig.url.replace(/\/$/, "");
   const normalised = path.startsWith("/") ? path : `/${path}`;
-  return `${base}${normalised}`;
+  try {
+    return new URL(normalised, siteUrlObject()).toString();
+  } catch {
+    return new URL(normalised, DEFAULT_SITE_URL).toString();
+  }
 }
