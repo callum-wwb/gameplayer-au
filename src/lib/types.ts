@@ -23,6 +23,10 @@ export type ArticleFrontmatter = {
   imageSource?: string;
   licenseNote?: string;
   coverSrc?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  faq?: { question: string; answer: string }[];
+  playtime?: string;
 };
 
 export type Article = ArticleFrontmatter & {

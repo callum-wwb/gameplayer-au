@@ -2,6 +2,60 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
+  async redirects() {
+    return [
+      {
+        source: "/elden-ring-review",
+        destination: "/elden-ring-review-become-elden-lord/",
+        permanent: true,
+      },
+      {
+        source: "/baldurs-gate-3-review",
+        destination: "/baldurs-gate-3-review-the-rpg-benchmark/",
+        permanent: true,
+      },
+      {
+        source: "/split-fiction-review",
+        destination: "/split-fiction-co-op-review/",
+        permanent: true,
+      },
+      {
+        source: "/hollow-knight-silksong-review",
+        destination: "/silksong-review/",
+        permanent: true,
+      },
+      {
+        source: "/clair-obscur-review",
+        destination: "/clair-obscur-expedition-33-review/",
+        permanent: true,
+      },
+      {
+        source: "/expedition-33-review",
+        destination: "/clair-obscur-expedition-33-review/",
+        permanent: true,
+      },
+      {
+        source: "/best-ps5-games",
+        destination: "/best-ps5-games-2026/",
+        permanent: true,
+      },
+      {
+        source: "/death-stranding-2-on-the-beach-review",
+        destination: "/death-stranding-2-review/",
+        permanent: true,
+      },
+      {
+        source: "/monster-hunter-wilds",
+        destination: "/games/monster-hunter-wilds/",
+        permanent: true,
+      },
+      {
+        source: "/silksong",
+        destination: "/games/hollow-knight-silksong/",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

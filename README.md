@@ -9,7 +9,7 @@ This is a native Next.js App Router site (not WordPress): scored reviews, news, 
 ## Stack
 
 - Next.js App Router (TypeScript) + Tailwind CSS v4 + [shadcn/ui](https://ui.shadcn.com)
-- MDX seed archive in `content/articles/` (~25 stories)
+- MDX editorial archive in `content/articles/` (reviews, news, previews, opinion, video)
 - Review scores out of 10 + schema.org `Review` / `Article` / `Organization` / `WebSite`
 - Dark charcoal + neon editorial theme
 - Server-only [SerpAPI](https://serpapi.com) Google Search helpers
@@ -42,6 +42,8 @@ npm start
 | `/{article-slug}/` | Clean SEO article URLs |
 | `/search?q=` | Full-archive search |
 | `/about` | Masthead and site notes |
+| `/authors/[slug]/` | Author archives + Person JSON-LD |
+| `/llms.txt` | Concise AI-citation notes |
 | `/feed.xml` | RSS |
 | `/sitemap.xml` `/robots.txt` | Crawlers |
 | `/tools/serp` | Editor SERP research UI (**gate before production**) |

@@ -57,6 +57,7 @@ export function articleJsonLd(article: Article, media?: CoverMedia) {
       "@type": "Person",
       name: author.name,
       jobTitle: author.role,
+      url: absoluteUrl(`/authors/${author.slug}/`),
     },
     publisher: {
       "@type": "Organization",
@@ -102,6 +103,39 @@ export function articleJsonLd(article: Article, media?: CoverMedia) {
   }
 
   return base;
+}
+
+export function faqPageJsonLd(
+  faq: { question: string; answer: string }[],
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+export function personJsonLd(authorSlug: keyof typeof authors) {
+  const author = authors[authorSlug];
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: author.name,
+    jobTitle: author.role,
+    description: author.bio,
+    url: absoluteUrl(`/authors/${author.slug}/`),
+    worksFor: {
+      "@type": "Organization",
+      name: siteConfig.name,
+    },
+  };
 }
 
 export function breadcrumbJsonLd(

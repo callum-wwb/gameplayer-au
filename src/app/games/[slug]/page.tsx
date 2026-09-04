@@ -23,8 +23,9 @@ export async function generateMetadata({
     return { title: "Game hub" };
   }
   return {
-    title: game.title,
+    title: `${game.title} reviews and guides`,
     description: game.description,
+    alternates: { canonical: `/games/${game.slug}/` },
     other: {
       "copyright-owner": game.copyrightOwner,
       "image-credit": game.image.creditLine,

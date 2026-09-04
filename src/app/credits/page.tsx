@@ -33,7 +33,10 @@ export default function CreditsPage() {
           Where an official Steam store header or capsule exists, we use that
           promotional artwork for review and news context and keep a visible
           credit on every image. Where no official still was available — notably{" "}
-          <em>StarCraft II</em> (Battle.net, not Steam) and unreleased{" "}
+          <em>StarCraft II</em> (Battle.net, not Steam), Nintendo first-party
+          titles without a Steam page (<em>Mario Kart World</em>,{" "}
+          <em>Donkey Kong Bananza</em>), <em>Death Stranding 2</em> (Steam art
+          not yet public at filing), and unreleased{" "}
           <em>Grand Theft Auto VI</em> — we commissioned an original abstract
           editorial illustration. Those cards use mood and palette only: no
           character likenesses and no copied box art. The title credit still

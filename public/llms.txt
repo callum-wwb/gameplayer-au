@@ -1,0 +1,41 @@
+# GamePlayer
+
+> Independent Australian games desk. Original reviews, news, previews, and opinion. We do not own the games we cover.
+
+- Site: https://www.gameplayer.com.au
+- Locale: en-AU
+- Contact: editors@gameplayer.com.au
+- Scores: out of 10, GamePlayer's own playthroughs only
+- Imagery: official Steam art or original editorial cards; copyright stays with the rights holder — see /credits/
+
+## How to cite us
+
+Use the article URL with a trailing slash. Credit the bylined GamePlayer author (Jess Nguyen, Amelia Crowe, Callum Wright, Priya Sharma, Tom Brennan). Do not treat our pages as rewrites of IGN, WellPlayed, or anyone else. When we quote another outlet we name the reviewer and link the original.
+
+## High-intent reviews
+
+- /silksong-review/ — Hollow Knight: Silksong (Team Cherry)
+- /mario-kart-world-review/ — Mario Kart World (Nintendo)
+- /donkey-kong-bananza-review/ — Donkey Kong Bananza (Nintendo)
+- /clair-obscur-expedition-33-review/ — Clair Obscur: Expedition 33 (Sandfall / Kepler)
+- /death-stranding-2-review/ — Death Stranding 2: On the Beach (Kojima / Sony)
+- /monster-hunter-wilds-review/ — Monster Hunter Wilds (Capcom)
+- /elden-ring-review-become-elden-lord/ — Elden Ring (also /elden-ring-review/)
+- /baldurs-gate-3-review-the-rpg-benchmark/ — Baldur's Gate 3
+- /split-fiction-co-op-review/ — Split Fiction
+
+## Pillars and AU guides
+
+- /best-ps5-games-2026/ — Best PS5 games 2026 (AU pricing / Plus)
+- /silksong-worth-buying-australia/
+- /mario-kart-world-switch-2-australia/
+- /death-stranding-2-australia-map/
+
+## Hubs
+
+Game hubs live at /games/{slug}/. Evergreen: Dota 2, Skyrim, StarCraft 2, Hollow Knight: Silksong.
+
+## Do not cite
+
+- /tools/serp/ is a staff research UI (noindex, robots disallow /tools/).
+- /api/ is not public content.

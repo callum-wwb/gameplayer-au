@@ -24,14 +24,18 @@ export default function AboutPage() {
         <p>
           This rebuild keeps the 2020 GamePlayer sections — News, Reviews,
           Previews, Opinion, Videos — and the evergreen hubs for Dota 2, Skyrim,
-          and StarCraft 2. We added Elden Ring and Baldur&apos;s Gate 3 because
-          those are the modern games readers still live in, plus first-class
+          StarCraft 2, and{" "}
+          <Link href="/games/hollow-knight-silksong/">Silksong</Link>. We cover
+          modern living-room games — Elden Ring, Baldur&apos;s Gate 3, Mario Kart
+          World, Expedition 33, Death Stranding 2 — plus first-class
           PlayStation, Xbox, and Nintendo Switch filters alongside PC, Mobile,
           and Classic.
         </p>
         <p>
-          Reviews are scored out of 10 and publish Review JSON-LD for search.
-          The archive is a native Next.js site, not WordPress. RSS lives at{" "}
+          Reviews are original GamePlayer copy, scored out of 10, with Review
+          and FAQ JSON-LD. When we mention another outlet&apos;s verdict we
+          credit the named reviewer and link the original. We do not rewrite
+          other sites&apos; reviews. RSS lives at{" "}
           <Link href="/feed.xml">/feed.xml</Link>.
         </p>
         <p>
@@ -56,7 +60,11 @@ export default function AboutPage() {
       <ul className="mt-4 space-y-4">
         {Object.values(authors).map((author) => (
           <li key={author.slug} className="rounded-xl border border-border/70 p-4">
-            <p className="font-heading font-semibold">{author.name}</p>
+            <p className="font-heading font-semibold">
+              <Link href={`/authors/${author.slug}/`} className="hover:text-primary">
+                {author.name}
+              </Link>
+            </p>
             <p className="text-sm text-primary">{author.role}</p>
             <p className="mt-1 text-sm text-muted-foreground">{author.bio}</p>
           </li>

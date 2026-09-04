@@ -128,6 +128,10 @@ export function getArticlesByGame(gameSlug: string) {
   return getAllArticles().filter((article) => article.games.includes(gameSlug));
 }
 
+export function getArticlesByAuthor(author: string) {
+  return getAllArticles().filter((article) => article.author === author);
+}
+
 export function getFeaturedArticles(limit = 4) {
   const featured = getAllArticles().filter((article) => article.featured);
   if (featured.length >= limit) {

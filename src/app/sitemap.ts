@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllArticles } from "@/lib/content";
 import { getListedHubs } from "@/lib/games";
-import { absoluteUrl, articleTypes, platforms } from "@/lib/site";
+import { absoluteUrl, articleTypes, authors, platforms } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/credits",
     "/games",
     "/search",
+    ...Object.values(authors).map((author) => `/authors/${author.slug}`),
     ...Object.values(articleTypes).map((item) => item.href),
     ...Object.values(platforms).map((item) => item.href),
   ];
