@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { JsonLd } from "@/components/json-ld";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
-import { siteConfig } from "@/lib/site";
+import { siteConfig, siteUrlObject } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,7 +25,7 @@ const oxanium = Oxanium({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: siteUrlObject(),
   title: {
     default: siteConfig.title,
     template: `%s | ${siteConfig.name}`,
