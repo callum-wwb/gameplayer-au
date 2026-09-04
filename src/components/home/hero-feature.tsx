@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ScoreBadge } from "@/components/article/score-badge";
 import { GameCover } from "@/components/media/game-cover";
+import { ImageCredit } from "@/components/media/image-credit";
 import { Badge } from "@/components/ui/badge";
 import { resolveArticleCover } from "@/lib/article-covers";
 import { articleTypes } from "@/lib/site";
@@ -39,13 +40,16 @@ export function HeroFeature({ articles }: { articles: Article[] }) {
         <GameCover
           media={currentMedia}
           hue={current.hue}
-          credit="overlay"
+          credit="none"
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 70vw"
         />
         <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black via-black/45 to-black/10" />
-        <div className="absolute inset-x-0 bottom-0 z-10 p-5 pb-10 sm:p-7 sm:pb-12">
+        <div className="absolute inset-x-0 bottom-0 z-20">
+          <ImageCredit credit={currentMedia} overlay compact />
+        </div>
+        <div className="absolute inset-x-0 bottom-0 z-10 p-5 pb-12 sm:p-7 sm:pb-14">
           <Badge>{articleTypes[current.type].label}</Badge>
           <h1 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl">
             {current.title}

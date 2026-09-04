@@ -4,7 +4,7 @@ import { ImageCredit } from "@/components/media/image-credit";
 import type { CoverMedia } from "@/lib/media";
 import { cn } from "@/lib/utils";
 
-type CreditPlacement = "overlay" | "caption" | "both" | "compact";
+type CreditPlacement = "overlay" | "caption" | "both" | "compact" | "none";
 
 type GameCoverProps = {
   media: CoverMedia;
@@ -31,7 +31,9 @@ export function GameCover({
   credit = "overlay",
   fill = false,
 }: GameCoverProps) {
-  const overlayCredit = credit === "overlay" || credit === "both" || credit === "compact";
+  const overlayCredit =
+    credit !== "none" &&
+    (credit === "overlay" || credit === "both" || credit === "compact");
   const captionCredit = credit === "caption" || credit === "both";
   const compact = credit === "compact" || credit === "overlay";
 
