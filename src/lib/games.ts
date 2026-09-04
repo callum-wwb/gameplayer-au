@@ -1,3 +1,12 @@
+import {
+  type CoverMedia,
+  editorialCover,
+  LICENSE_PLATFORM,
+  steamCover,
+} from "@/lib/media";
+
+export type GameKind = "game" | "hardware";
+
 export type GameHub = {
   slug: string;
   title: string;
@@ -5,11 +14,35 @@ export type GameHub = {
   tagline: string;
   description: string;
   developer: string;
+  publisher: string;
+  copyrightOwner: string;
   platforms: string[];
   released: string;
   hue: number;
   evergreen: boolean;
+  listedHub: boolean;
+  kind: GameKind;
+  steamAppId?: number;
+  aliases: string[];
+  image: CoverMedia;
 };
+
+export const STEAM_APP_IDS = {
+  "dota-2": 570,
+  skyrim: 489830,
+  "elden-ring": 1245620,
+  "baldurs-gate-3": 1086940,
+  "binding-of-isaac": 250900,
+  "heroes-of-loot": 363330,
+  "human-fall-flat": 477160,
+  "overcooked-2": 728880,
+  "dragon-ball-z-kakarot": 851850,
+  balatro: 2379780,
+  "hollow-knight": 367520,
+  "hollow-knight-silksong": 1030300,
+  "sea-of-stars": 1244090,
+  "split-fiction": 2001120,
+} as const;
 
 export const gameHubs: GameHub[] = [
   {
@@ -19,11 +52,25 @@ export const gameHubs: GameHub[] = [
     tagline: "The infinite war",
     description:
       "Valve’s free-to-play MOBA is still the deepest competitive game on PC. GamePlayer covers patches, the International, and why your support still did not buy a ward.",
-    developer: "Valve",
+    developer: "Valve Corporation",
+    publisher: "Valve Corporation",
+    copyrightOwner: "Valve Corporation",
     platforms: ["PC"],
     released: "2013",
     hue: 12,
     evergreen: true,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["dota-2"],
+    aliases: ["Dota 2", "DOTA 2"],
+    image: steamCover({
+      slug: "dota-2",
+      title: "Dota 2",
+      copyrightOwner: "Valve Corporation",
+      publisher: "Valve Corporation",
+      developer: "Valve Corporation",
+      steamAppId: STEAM_APP_IDS["dota-2"],
+    }),
   },
   {
     slug: "skyrim",
@@ -33,10 +80,28 @@ export const gameHubs: GameHub[] = [
     description:
       "The game that refuses to leave. Reviews, anniversary editions, and the modding culture that keeps Tamriel running on Australian PCs.",
     developer: "Bethesda Game Studios",
+    publisher: "Bethesda Softworks LLC",
+    copyrightOwner: "Bethesda Softworks LLC / ZeniMax Media Inc.",
     platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
     released: "2011",
     hue: 210,
     evergreen: true,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS.skyrim,
+    aliases: [
+      "Skyrim",
+      "The Elder Scrolls V: Skyrim",
+      "The Elder Scrolls V Skyrim",
+    ],
+    image: steamCover({
+      slug: "skyrim",
+      title: "The Elder Scrolls V: Skyrim",
+      copyrightOwner: "Bethesda Softworks LLC / ZeniMax Media Inc.",
+      publisher: "Bethesda Softworks LLC",
+      developer: "Bethesda Game Studios",
+      steamAppId: STEAM_APP_IDS.skyrim,
+    }),
   },
   {
     slug: "starcraft-2",
@@ -45,11 +110,29 @@ export const gameHubs: GameHub[] = [
     tagline: "Still the RTS benchmark",
     description:
       "Wings of Liberty through Legacy of the Void, co-op commanders, and the ladder that taught a generation to click faster.",
-    developer: "Blizzard Entertainment",
+    developer: "Blizzard Entertainment, Inc.",
+    publisher: "Blizzard Entertainment, Inc.",
+    copyrightOwner: "Blizzard Entertainment, Inc.",
     platforms: ["PC"],
     released: "2010",
     hue: 38,
     evergreen: true,
+    listedHub: true,
+    kind: "game",
+    aliases: [
+      "StarCraft II",
+      "StarCraft 2",
+      "StarCraft II: Legacy of the Void",
+      "Starcraft 2",
+    ],
+    image: editorialCover({
+      src: "/games/starcraft-2.jpg",
+      title: "StarCraft II",
+      copyrightOwner: "Blizzard Entertainment, Inc.",
+      publisher: "Blizzard Entertainment, Inc.",
+      developer: "Blizzard Entertainment, Inc.",
+      alt: "Original editorial artwork evoking StarCraft II — abstract amber command grid, no units or logos",
+    }),
   },
   {
     slug: "elden-ring",
@@ -58,11 +141,25 @@ export const gameHubs: GameHub[] = [
     tagline: "Become Elden Lord",
     description:
       "FromSoftware’s open-world leap. Guides, DLC impressions, and the builds that got us through the Lands Between after midnight.",
-    developer: "FromSoftware",
+    developer: "FromSoftware, Inc.",
+    publisher: "Bandai Namco Entertainment Inc.",
+    copyrightOwner: "FromSoftware, Inc. / Bandai Namco Entertainment Inc.",
     platforms: ["PC", "PlayStation", "Xbox"],
     released: "2022",
     hue: 48,
     evergreen: true,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["elden-ring"],
+    aliases: ["Elden Ring", "Elden Ring: Shadow of the Erdtree"],
+    image: steamCover({
+      slug: "elden-ring",
+      title: "Elden Ring",
+      copyrightOwner: "FromSoftware, Inc. / Bandai Namco Entertainment Inc.",
+      publisher: "Bandai Namco Entertainment Inc.",
+      developer: "FromSoftware, Inc.",
+      steamAppId: STEAM_APP_IDS["elden-ring"],
+    }),
   },
   {
     slug: "baldurs-gate-3",
@@ -72,13 +169,416 @@ export const gameHubs: GameHub[] = [
     description:
       "Larian’s D&D epic reset the conversation about single-player RPGs. Campaign diaries, companion takes, and Honour Mode war stories.",
     developer: "Larian Studios",
+    publisher: "Larian Studios",
+    copyrightOwner: "Larian Studios and Wizards of the Coast LLC",
     platforms: ["PC", "PlayStation", "Xbox", "Mac"],
     released: "2023",
     hue: 28,
     evergreen: true,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["baldurs-gate-3"],
+    aliases: ["Baldur's Gate 3", "Baldurs Gate 3", "BG3"],
+    image: steamCover({
+      slug: "baldurs-gate-3",
+      title: "Baldur's Gate 3",
+      copyrightOwner: "Larian Studios and Wizards of the Coast LLC",
+      publisher: "Larian Studios",
+      developer: "Larian Studios",
+      steamAppId: STEAM_APP_IDS["baldurs-gate-3"],
+    }),
+  },
+  {
+    slug: "binding-of-isaac",
+    title: "The Binding of Isaac: Rebirth",
+    shortTitle: "Binding of Isaac",
+    tagline: "Down into the tears again",
+    description:
+      "Edmund McMillen’s basement roguelike, rebuilt by Nicalis and still one of the meanest replay loops on PC.",
+    developer: "Nicalis, Inc.",
+    publisher: "Nicalis, Inc.",
+    copyrightOwner: "Edmund McMillen and Nicalis, Inc.",
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    released: "2014",
+    hue: 18,
+    evergreen: false,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["binding-of-isaac"],
+    aliases: [
+      "The Binding of Isaac",
+      "The Binding of Isaac: Rebirth",
+      "Binding of Isaac",
+    ],
+    image: steamCover({
+      slug: "binding-of-isaac",
+      title: "The Binding of Isaac: Rebirth",
+      copyrightOwner: "Edmund McMillen and Nicalis, Inc.",
+      publisher: "Nicalis, Inc.",
+      developer: "Nicalis, Inc.",
+      steamAppId: STEAM_APP_IDS["binding-of-isaac"],
+    }),
+  },
+  {
+    slug: "heroes-of-loot",
+    title: "Heroes of Loot",
+    shortTitle: "Heroes of Loot",
+    tagline: "A ten-minute dungeon",
+    description:
+      "OrangePixel’s bite-sized Gauntlet riff — the kind of mobile crawler that respects a commute.",
+    developer: "OrangePixel",
+    publisher: "OrangePixel",
+    copyrightOwner: "OrangePixel",
+    platforms: ["Mobile", "PC"],
+    released: "2015",
+    hue: 42,
+    evergreen: false,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["heroes-of-loot"],
+    aliases: ["Heroes of Loot"],
+    image: steamCover({
+      slug: "heroes-of-loot",
+      title: "Heroes of Loot",
+      copyrightOwner: "OrangePixel",
+      publisher: "OrangePixel",
+      developer: "OrangePixel",
+      steamAppId: STEAM_APP_IDS["heroes-of-loot"],
+    }),
+  },
+  {
+    slug: "human-fall-flat",
+    title: "Human: Fall Flat",
+    shortTitle: "Human: Fall Flat",
+    tagline: "Ragdolls, then friendship tests",
+    description:
+      "No Brakes Games’ physics sandbox that accidentally became a party platform.",
+    developer: "No Brakes Games",
+    publisher: "Curve Games",
+    copyrightOwner: "No Brakes Games / Curve Games",
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    released: "2016",
+    hue: 200,
+    evergreen: false,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["human-fall-flat"],
+    aliases: ["Human: Fall Flat", "Human Fall Flat"],
+    image: steamCover({
+      slug: "human-fall-flat",
+      title: "Human: Fall Flat",
+      copyrightOwner: "No Brakes Games / Curve Games",
+      publisher: "Curve Games",
+      developer: "No Brakes Games",
+      steamAppId: STEAM_APP_IDS["human-fall-flat"],
+    }),
+  },
+  {
+    slug: "overcooked-2",
+    title: "Overcooked! 2",
+    shortTitle: "Overcooked 2",
+    tagline: "Friendship, plated under fire",
+    description:
+      "Ghost Town Games and Team17’s kitchen co-op sequel — louder, faster, still an honesty test.",
+    developer: "Ghost Town Games / Team17",
+    publisher: "Team17 Digital Ltd.",
+    copyrightOwner: "Team17 Digital Ltd. / Ghost Town Games",
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    released: "2018",
+    hue: 28,
+    evergreen: false,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["overcooked-2"],
+    aliases: ["Overcooked! 2", "Overcooked 2", "Overcooked"],
+    image: steamCover({
+      slug: "overcooked-2",
+      title: "Overcooked! 2",
+      copyrightOwner: "Team17 Digital Ltd. / Ghost Town Games",
+      publisher: "Team17 Digital Ltd.",
+      developer: "Ghost Town Games / Team17",
+      steamAppId: STEAM_APP_IDS["overcooked-2"],
+    }),
+  },
+  {
+    slug: "dragon-ball-z-kakarot",
+    title: "Dragon Ball Z: Kakarot",
+    shortTitle: "DBZ: Kakarot",
+    tagline: "The Saiyan saga, replayed",
+    description:
+      "CyberConnect2’s interactive recap of the Z arc, published by Bandai Namco — fans first, fishing second.",
+    developer: "CyberConnect2 Co., Ltd.",
+    publisher: "BANDAI NAMCO Entertainment Inc.",
+    copyrightOwner:
+      "Bird Studio / Shueisha / Toei Animation and BANDAI NAMCO Entertainment Inc.",
+    platforms: ["PC", "PlayStation", "Xbox"],
+    released: "2020",
+    hue: 52,
+    evergreen: false,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["dragon-ball-z-kakarot"],
+    aliases: [
+      "Dragon Ball Z: Kakarot",
+      "Dragon Ball Z Kakarot",
+      "DBZ Kakarot",
+    ],
+    image: steamCover({
+      slug: "dragon-ball-z-kakarot",
+      title: "Dragon Ball Z: Kakarot",
+      copyrightOwner:
+        "Bird Studio / Shueisha / Toei Animation and BANDAI NAMCO Entertainment Inc.",
+      publisher: "BANDAI NAMCO Entertainment Inc.",
+      developer: "CyberConnect2 Co., Ltd.",
+      steamAppId: STEAM_APP_IDS["dragon-ball-z-kakarot"],
+    }),
+  },
+  {
+    slug: "balatro",
+    title: "Balatro",
+    shortTitle: "Balatro",
+    tagline: "One more ante",
+    description:
+      "LocalThunk’s poker roguelike, published by Playstack — Texas Hold’em after it discovered jokers.",
+    developer: "LocalThunk",
+    publisher: "Playstack Ltd.",
+    copyrightOwner: "LocalThunk / Playstack Ltd.",
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    released: "2024",
+    hue: 145,
+    evergreen: false,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS.balatro,
+    aliases: ["Balatro"],
+    image: steamCover({
+      slug: "balatro",
+      title: "Balatro",
+      copyrightOwner: "LocalThunk / Playstack Ltd.",
+      publisher: "Playstack Ltd.",
+      developer: "LocalThunk",
+      steamAppId: STEAM_APP_IDS.balatro,
+    }),
+  },
+  {
+    slug: "hollow-knight",
+    title: "Hollow Knight",
+    shortTitle: "Hollow Knight",
+    tagline: "Hallownest still calls",
+    description:
+      "Team Cherry’s Adelaide-made Metroidvania — the map that taught a generation to sit with a difficult room.",
+    developer: "Team Cherry Pty Ltd",
+    publisher: "Team Cherry Pty Ltd",
+    copyrightOwner: "Team Cherry Pty Ltd",
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    released: "2017",
+    hue: 250,
+    evergreen: false,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["hollow-knight"],
+    aliases: ["Hollow Knight"],
+    image: steamCover({
+      slug: "hollow-knight",
+      title: "Hollow Knight",
+      copyrightOwner: "Team Cherry Pty Ltd",
+      publisher: "Team Cherry Pty Ltd",
+      developer: "Team Cherry Pty Ltd",
+      steamAppId: STEAM_APP_IDS["hollow-knight"],
+    }),
+  },
+  {
+    slug: "hollow-knight-silksong",
+    title: "Hollow Knight: Silksong",
+    shortTitle: "Silksong",
+    tagline: "Hornet’s climb",
+    description:
+      "Team Cherry’s sequel in Pharloom. Faster, meaner, and already rewriting what Hallownest taught us.",
+    developer: "Team Cherry Pty Ltd",
+    publisher: "Team Cherry Pty Ltd",
+    copyrightOwner: "Team Cherry Pty Ltd",
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    released: "2025",
+    hue: 320,
+    evergreen: false,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["hollow-knight-silksong"],
+    aliases: ["Hollow Knight: Silksong", "Silksong"],
+    image: steamCover({
+      slug: "hollow-knight-silksong",
+      title: "Hollow Knight: Silksong",
+      copyrightOwner: "Team Cherry Pty Ltd",
+      publisher: "Team Cherry Pty Ltd",
+      developer: "Team Cherry Pty Ltd",
+      steamAppId: STEAM_APP_IDS["hollow-knight-silksong"],
+    }),
+  },
+  {
+    slug: "sea-of-stars",
+    title: "Sea of Stars",
+    shortTitle: "Sea of Stars",
+    tagline: "A SNES dream that knows it is one",
+    description:
+      "Sabotage Studio’s turn-based adventure — gorgeous, musical, and just self-aware enough to avoid pastiche.",
+    developer: "Sabotage Studio",
+    publisher: "Sabotage Studio",
+    copyrightOwner: "Sabotage Studio",
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    released: "2023",
+    hue: 255,
+    evergreen: false,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["sea-of-stars"],
+    aliases: ["Sea of Stars"],
+    image: steamCover({
+      slug: "sea-of-stars",
+      title: "Sea of Stars",
+      copyrightOwner: "Sabotage Studio",
+      publisher: "Sabotage Studio",
+      developer: "Sabotage Studio",
+      steamAppId: STEAM_APP_IDS["sea-of-stars"],
+    }),
+  },
+  {
+    slug: "split-fiction",
+    title: "Split Fiction",
+    shortTitle: "Split Fiction",
+    tagline: "Two players, one reckless imagination",
+    description:
+      "Hazelight’s co-op genre blender, published by Electronic Arts — it only works if you trust the other stick.",
+    developer: "Hazelight Studios AB",
+    publisher: "Electronic Arts Inc.",
+    copyrightOwner: "Electronic Arts Inc. / Hazelight Studios AB",
+    platforms: ["PC", "PlayStation", "Xbox"],
+    released: "2025",
+    hue: 280,
+    evergreen: false,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["split-fiction"],
+    aliases: ["Split Fiction"],
+    image: steamCover({
+      slug: "split-fiction",
+      title: "Split Fiction",
+      copyrightOwner: "Electronic Arts Inc. / Hazelight Studios AB",
+      publisher: "Electronic Arts Inc.",
+      developer: "Hazelight Studios AB",
+      steamAppId: STEAM_APP_IDS["split-fiction"],
+      steamFile: "header.jpg",
+    }),
+  },
+  {
+    slug: "gta-6",
+    title: "Grand Theft Auto VI",
+    shortTitle: "GTA 6",
+    tagline: "Vice City after dark — preview only",
+    description:
+      "Rockstar’s forthcoming dual-protagonist crime story. Coverage here is preview and analysis only; we do not have official launch art.",
+    developer: "Rockstar Games",
+    publisher: "Rockstar Games",
+    copyrightOwner: "Take-Two Interactive Software, Inc.",
+    platforms: ["PlayStation", "Xbox"],
+    released: "TBA",
+    hue: 330,
+    evergreen: false,
+    listedHub: true,
+    kind: "game",
+    aliases: [
+      "GTA 6",
+      "GTA VI",
+      "Grand Theft Auto VI",
+      "Grand Theft Auto 6",
+    ],
+    image: editorialCover({
+      src: "/games/gta-6.jpg",
+      title: "Grand Theft Auto VI",
+      copyrightOwner: "Take-Two Interactive Software, Inc.",
+      publisher: "Rockstar Games",
+      developer: "Rockstar Games",
+      alt: "Original editorial artwork evoking a neon coastal night — no characters, vehicles, or Rockstar logos",
+    }),
+  },
+  {
+    slug: "atari-2600-plus",
+    title: "Atari 2600+",
+    shortTitle: "Atari 2600+",
+    tagline: "The living-room cabinet returns",
+    description:
+      "Atari’s plug-and-play revival of the 2600 form. Hardware nostalgia, museum-grade and HDMI-stick alike.",
+    developer: "Atari, Inc.",
+    publisher: "Atari, Inc.",
+    copyrightOwner: "Atari Interactive, Inc.",
+    platforms: ["Classic"],
+    released: "2023",
+    hue: 45,
+    evergreen: false,
+    listedHub: true,
+    kind: "hardware",
+    aliases: ["Atari 2600+", "Atari 2600 Plus", "Atari 2600"],
+    image: editorialCover({
+      src: "/games/atari-2600-plus.jpg",
+      title: "Atari 2600+",
+      copyrightOwner: "Atari Interactive, Inc.",
+      publisher: "Atari, Inc.",
+      developer: "Atari, Inc.",
+      alt: "Original editorial artwork evoking 1970s living-room hardware — no Atari logos or game pixels",
+      licenseNote: LICENSE_PLATFORM,
+    }),
+  },
+  {
+    slug: "nintendo-switch-2",
+    title: "Nintendo Switch 2",
+    shortTitle: "Switch 2",
+    tagline: "Handheld first, always",
+    description:
+      "Nintendo’s successor hybrid — stock, pricing, and the first-party slate that matters once the midnight queues thin out.",
+    developer: "Nintendo",
+    publisher: "Nintendo",
+    copyrightOwner: "Nintendo",
+    platforms: ["Nintendo Switch"],
+    released: "2025",
+    hue: 355,
+    evergreen: false,
+    listedHub: true,
+    kind: "hardware",
+    aliases: ["Nintendo Switch 2", "Switch 2"],
+    image: editorialCover({
+      src: "/games/nintendo-switch-2.jpg",
+      title: "Nintendo Switch 2",
+      copyrightOwner: "Nintendo",
+      publisher: "Nintendo",
+      developer: "Nintendo",
+      alt: "Original editorial artwork evoking a handheld-to-dock launch — no Nintendo logos or Joy-Con copies",
+      licenseNote: LICENSE_PLATFORM,
+    }),
   },
 ];
 
 export function getGameHub(slug: string) {
   return gameHubs.find((game) => game.slug === slug);
+}
+
+export function getListedHubs() {
+  return gameHubs.filter((game) => game.listedHub);
+}
+
+export function getEvergreenHubs() {
+  return gameHubs.filter((game) => game.evergreen);
+}
+
+export function getGameByTitle(title: string) {
+  const needle = title.trim().toLowerCase();
+  if (!needle) return undefined;
+  return gameHubs.find(
+    (game) =>
+      game.title.toLowerCase() === needle ||
+      game.shortTitle.toLowerCase() === needle ||
+      game.aliases.some((alias) => alias.toLowerCase() === needle),
+  );
+}
+
+export function getCoverForGame(slugOrTitle: string) {
+  return getGameHub(slugOrTitle)?.image ?? getGameByTitle(slugOrTitle)?.image;
 }

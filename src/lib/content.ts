@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { cache } from "react";
+import { getGameHub } from "@/lib/games";
 import { authors, type ArticleType, type PlatformSlug } from "@/lib/site";
 import type { Article, ArticleFrontmatter } from "@/lib/types";
 
@@ -65,6 +66,16 @@ function assertFrontmatter(data: Record<string, unknown>, file: string) {
 
   if (!(data.author as string in authors)) {
     throw new Error(`Unknown author "${String(data.author)}" in ${file}`);
+  }
+
+  if (!Array.isArray(data.games)) {
+    throw new Error(`games must be an array in ${file}`);
+  }
+
+  for (const game of data.games) {
+    if (!getGameHub(String(game))) {
+      throw new Error(`Unknown game "${String(game)}" in ${file}`);
+    }
   }
 
   return data as ArticleFrontmatter;

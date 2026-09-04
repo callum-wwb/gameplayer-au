@@ -37,7 +37,8 @@ npm start
 | `/` | Featured hero, latest grid, Recent + Reviews sidebar |
 | `/news` `/reviews` `/previews` `/opinion` `/videos` | Section archives |
 | `/pc` `/mobile` `/classic` `/playstation` `/xbox` `/nintendo` | Platform filters |
-| `/games/[slug]` | Hubs: Dota 2, Skyrim, StarCraft 2, Elden Ring, Baldur's Gate 3 |
+| `/games` `/games/[slug]` | Game and hardware hubs (credited covers) |
+| `/credits` | Public ledger of image copyright and trademark credits |
 | `/{article-slug}/` | Clean SEO article URLs |
 | `/search?q=` | Full-archive search |
 | `/about` | Masthead and site notes |
@@ -82,3 +83,17 @@ After the domain is live, keep `NEXT_PUBLIC_SITE_URL=https://www.gameplayer.com.
 Seed articles live in `content/articles/*.mdx` with frontmatter (`type`, `platforms`, `score`, `games`, etc.). Add a file, rebuild, and the story appears in archives, search, RSS, and the sitemap.
 
 Reviews should include `score` (0–10), `verdict`, and `gameTitle` so Review JSON-LD can attach to a `VideoGame`.
+
+## Editorial image policy
+
+GamePlayer does **not** own third-party game art, characters, hardware names, or trademarks. Those belong to the developers, publishers, and platform makers named on each image.
+
+1. Prefer official promotional stills — Steam store headers and capsules — used only for editorial review and news context. Never rip in-game files.
+2. Every cover on hubs, cards, heroes, and article headers renders a visible credit, e.g. `© [Publisher/Developer]. [Game Title] and related trademarks belong to their respective owners. Used for editorial coverage on GamePlayer.`
+3. Structured metadata on each cover: `copyrightOwner`, `publisher`, `developer`, `creditLine`, `imageSource`, `licenseNote`.
+4. If no official still exists (Battle.net-only titles, unreleased games, hardware listicles), generate an **original** abstract editorial card — mood, palette, typography. No character likenesses. No copied box art. Still credit the title’s rights holder.
+5. Never invent a copyright owner. Research the real developer and publisher before adding a hub.
+
+Steam App IDs used for store art are listed in `src/lib/games.ts` (`STEAM_APP_IDS`) and on `/credits`. Remote Steam CDN hosts are allowlisted in `next.config.ts` so `next/image` can fetch store assets if we point `image.src` at a CDN URL later. Current covers are stored locally under `public/games/` and `public/articles/` with `imageSource` recording the Steam URL or `editorial-generated`.
+
+The site footer and `/about` reiterate that trademarks belong to their respective owners. `/credits` is the public ledger.

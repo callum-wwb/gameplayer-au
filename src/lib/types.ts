@@ -16,6 +16,13 @@ export type ArticleFrontmatter = {
   verdict?: string;
   gameTitle?: string;
   videoUrl?: string;
+  copyrightOwner?: string;
+  publisher?: string;
+  developer?: string;
+  creditLine?: string;
+  imageSource?: string;
+  licenseNote?: string;
+  coverSrc?: string;
 };
 
 export type Article = ArticleFrontmatter & {

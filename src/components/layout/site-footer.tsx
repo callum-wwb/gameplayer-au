@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Rss } from "lucide-react";
 import { SearchForm } from "@/components/layout/search-form";
-import { gameHubs } from "@/lib/games";
+import { getEvergreenHubs } from "@/lib/games";
 import { classicPlatforms, extraPlatforms, primaryNav, siteConfig } from "@/lib/site";
 
 export function SiteFooter() {
@@ -56,6 +56,16 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/credits" className="hover:text-primary">
+                Media credits
+              </Link>
+            </li>
+            <li>
+              <Link href="/games" className="hover:text-primary">
+                Game hubs
+              </Link>
+            </li>
+            <li>
               <a href={`mailto:${siteConfig.email}`} className="hover:text-primary">
                 Contact us
               </a>
@@ -65,7 +75,7 @@ export function SiteFooter() {
                 Subscribe
               </Link>
             </li>
-            {gameHubs.map((game) => (
+            {getEvergreenHubs().map((game) => (
               <li key={game.slug}>
                 <Link href={`/games/${game.slug}/`} className="hover:text-primary">
                   {game.shortTitle}
@@ -89,9 +99,15 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-border/60">
-        <p className="mx-auto max-w-6xl px-4 py-4 text-center text-xs text-muted-foreground">
+        <p className="mx-auto max-w-6xl px-4 py-4 text-center text-xs leading-relaxed text-muted-foreground">
           © {new Date().getFullYear()} {siteConfig.name}. {siteConfig.slogan}.
-          Editorial site for {siteConfig.url.replace("https://", "")}.
+          Editorial site for {siteConfig.url.replace("https://", "")}. Game
+          titles, characters, artwork, hardware names, and trademarks belong to
+          their respective owners and publishers — not to GamePlayer.{" "}
+          <Link href="/credits/" className="underline-offset-2 hover:text-primary hover:underline">
+            Media credits
+          </Link>
+          .
         </p>
       </div>
     </footer>

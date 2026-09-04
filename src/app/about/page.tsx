@@ -40,6 +40,17 @@ export default function AboutPage() {
           snapshots and People Also Ask helpers. That route is documented as
           staff-only and should be gated before a production launch.
         </p>
+        <h2>Trademarks and artwork</h2>
+        <p>
+          GamePlayer does not own the games, characters, promotional stills,
+          hardware names, or trademarks that appear in our coverage. Those
+          belong to the developers, publishers, and platform makers named on
+          each image and on the{" "}
+          <Link href="/credits/">media credits</Link> page. Steam store headers
+          are used for editorial review and news context. Where no official
+          still exists, we run an original abstract editorial card and still
+          credit the title&apos;s rights holder.
+        </p>
       </div>
       <h2 className="mt-10 font-heading text-2xl font-bold">Masthead</h2>
       <ul className="mt-4 space-y-4">

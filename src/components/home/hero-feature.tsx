@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { CoverArt } from "@/components/article/cover-art";
 import { ScoreBadge } from "@/components/article/score-badge";
+import { GameCover } from "@/components/media/game-cover";
 import { Badge } from "@/components/ui/badge";
+import { resolveArticleCover } from "@/lib/article-covers";
 import { articleTypes } from "@/lib/site";
 import type { Article } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -27,19 +28,24 @@ export function HeroFeature({ articles }: { articles: Article[] }) {
     return null;
   }
 
+  const currentMedia = resolveArticleCover(current);
+
   return (
     <section
       className="grid overflow-hidden rounded-2xl border border-border/70 lg:grid-cols-[minmax(0,1.7fr)_minmax(18rem,1fr)]"
       aria-label="Featured stories"
     >
       <Link href={`/${current.slug}/`} className="relative block min-h-[280px]">
-        <CoverArt
-          title=""
+        <GameCover
+          media={currentMedia}
           hue={current.hue}
-          className="absolute inset-0"
+          credit="overlay"
+          fill
+          priority
+          sizes="(max-width: 1024px) 100vw, 70vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/10" />
-        <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-7">
+        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black via-black/45 to-black/10" />
+        <div className="absolute inset-x-0 bottom-0 z-10 p-5 pb-10 sm:p-7 sm:pb-12">
           <Badge>{articleTypes[current.type].label}</Badge>
           <h1 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl">
             {current.title}
@@ -62,6 +68,7 @@ export function HeroFeature({ articles }: { articles: Article[] }) {
       <div className="flex flex-col border-t border-border/70 bg-card/40 lg:border-t-0 lg:border-l">
         {articles.map((article, articleIndex) => {
           const active = articleIndex === index;
+          const media = resolveArticleCover(article);
           return (
             <button
               key={article.slug}
@@ -75,10 +82,12 @@ export function HeroFeature({ articles }: { articles: Article[] }) {
               )}
               aria-current={active ? "true" : undefined}
             >
-              <CoverArt
-                title=""
+              <GameCover
+                media={media}
                 hue={article.hue}
+                credit="compact"
                 className="h-16 w-[4.5rem] shrink-0 rounded-md"
+                sizes="72px"
               />
               <span className="min-w-0">
                 <span className="block font-heading text-[10px] font-semibold tracking-[0.16em] text-primary uppercase">

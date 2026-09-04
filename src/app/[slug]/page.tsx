@@ -2,22 +2,23 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleCard } from "@/components/article/article-card";
-import { CoverArt } from "@/components/article/cover-art";
 import { MdxBody } from "@/components/article/mdx-body";
 import { ReviewPanel } from "@/components/article/review-panel";
 import { VideoStage } from "@/components/article/video-stage";
 import { JsonLd } from "@/components/json-ld";
+import { GameCover } from "@/components/media/game-cover";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { resolveArticleCover, resolveArticleGames } from "@/lib/article-covers";
 import {
   formatDate,
   getAllArticles,
   getArticle,
   getRelatedArticles,
 } from "@/lib/content";
-import { getGameHub } from "@/lib/games";
+import { imageObjectJsonLd } from "@/lib/media";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { articleTypes, authors, platforms } from "@/lib/site";
+import { absoluteUrl, articleTypes, authors, platforms } from "@/lib/site";
 
 export function generateStaticParams() {
   return getAllArticles().map((article) => ({ slug: article.slug }));
@@ -34,12 +35,14 @@ export async function generateMetadata({
     return { title: "Story" };
   }
 
+  const media = resolveArticleCover(article);
+
   return {
     title: article.title,
     description: article.excerpt,
     authors: [{ name: authors[article.author].name }],
     openGraph: {
-      type: article.type === "review" ? "article" : "article",
+      type: "article",
       title: article.title,
       description: article.excerpt,
       publishedTime: article.publishedAt,
@@ -48,6 +51,10 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `/${article.slug}/`,
+    },
+    other: {
+      "copyright-owner": media.copyrightOwner,
+      "image-credit": media.creditLine,
     },
   };
 }
@@ -66,10 +73,18 @@ export default async function ArticlePage({
   const author = authors[article.author];
   const related = getRelatedArticles(article);
   const typeMeta = articleTypes[article.type];
+  const media = resolveArticleCover(article);
+  const taggedGames = resolveArticleGames(article);
 
   return (
     <article className="mx-auto max-w-6xl px-4 py-10">
-      <JsonLd data={articleJsonLd(article)} />
+      <JsonLd data={articleJsonLd(article, media)} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          ...imageObjectJsonLd(media, absoluteUrl(`/${article.slug}/`)),
+        }}
+      />
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", href: "/" },
@@ -102,26 +117,27 @@ export default async function ArticlePage({
             <Badge variant="secondary">{platforms[platform].label}</Badge>
           </Link>
         ))}
-        {article.games.map((gameSlug) => {
-          const game = getGameHub(gameSlug);
-          if (!game) return null;
-          return (
-            <Link key={gameSlug} href={`/games/${gameSlug}/`}>
-              <Badge variant="outline">{game.shortTitle}</Badge>
-            </Link>
-          );
-        })}
+        {taggedGames.map((game) => (
+          <Link key={game.slug} href={`/games/${game.slug}/`}>
+            <Badge variant="outline">{game.shortTitle}</Badge>
+          </Link>
+        ))}
       </div>
 
       <div className="mt-8 overflow-hidden rounded-2xl border border-border/70">
         {article.type === "video" ? (
           <VideoStage article={article} />
         ) : (
-          <CoverArt
-            title={article.gameTitle ?? article.title}
+          <GameCover
+            media={media}
             hue={article.hue}
+            title={article.gameTitle ?? article.title}
             kicker={typeMeta.label}
+            showTitle
+            credit="both"
             className="aspect-16/8 min-h-[240px]"
+            sizes="(max-width: 1024px) 100vw, 1152px"
+            priority
           />
         )}
       </div>
