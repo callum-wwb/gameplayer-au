@@ -8,7 +8,8 @@ export const LICENSE_PLATFORM =
   "Original abstract editorial illustration created for GamePlayer. No official hardware photography and no platform logos were copied. Console, service, and hardware trademarks belong to their respective owners.";
 
 export function buildCreditLine(copyrightOwner: string, title: string): string {
-  return `© ${copyrightOwner}. ${title} and related trademarks belong to their respective owners. Used for editorial coverage on GamePlayer.`;
+  const owner = copyrightOwner.replace(/\.$/, "");
+  return `© ${owner}. ${title} and related trademarks belong to their respective owners. Used for editorial coverage on GamePlayer.`;
 }
 
 export function steamAssetUrl(

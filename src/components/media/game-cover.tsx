@@ -35,7 +35,8 @@ export function GameCover({
     credit !== "none" &&
     (credit === "overlay" || credit === "both" || credit === "compact");
   const captionCredit = credit === "caption" || credit === "both";
-  const compact = credit === "compact" || credit === "overlay";
+  const compact =
+    credit === "compact" || credit === "overlay" || credit === "both";
 
   return (
     <figure className={cn(fill ? "absolute inset-0" : "min-w-0")}>
