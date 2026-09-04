@@ -21,7 +21,7 @@ export function HeroFeature({ articles }: { articles: Article[] }) {
       setIndex((value) => (value + 1) % articles.length);
     }, 7000);
     return () => window.clearInterval(timer);
-  }, [articles.length]);
+  }, [articles.length, index]);
 
   if (!current) {
     return null;
@@ -47,6 +47,9 @@ export function HeroFeature({ articles }: { articles: Article[] }) {
           <p className="mt-2 max-w-2xl text-sm text-white/80 sm:text-base">
             {current.excerpt}
           </p>
+          <span className="mt-4 inline-flex rounded-md bg-primary px-3 py-1.5 text-sm font-semibold text-primary-foreground">
+            Read story
+          </span>
           {current.score !== undefined ? (
             <ScoreBadge
               score={current.score}

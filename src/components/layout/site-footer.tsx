@@ -12,8 +12,8 @@ export function SiteFooter() {
           {siteConfig.name}
           <span className="text-primary">™</span>
         </p>
-        <p className="mt-1 text-sm text-muted-foreground italic">
-          {siteConfig.slogan}
+        <p className="mt-2 font-heading text-base font-semibold tracking-wide text-primary">
+          {siteConfig.slogan}™
         </p>
       </div>
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-8 sm:grid-cols-2 lg:grid-cols-4">
