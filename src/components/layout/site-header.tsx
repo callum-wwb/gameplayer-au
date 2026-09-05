@@ -12,9 +12,9 @@ import {
 } from "@/lib/site";
 
 const classicIcons = {
-  "/pc": Monitor,
-  "/mobile": Smartphone,
-  "/classic": Joystick,
+  "/pc/": Monitor,
+  "/mobile/": Smartphone,
+  "/classic/": Joystick,
 } as const;
 
 export function SiteHeader() {

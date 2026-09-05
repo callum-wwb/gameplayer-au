@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ArchivePage } from "@/components/archive/archive-page";
 import { JsonLd } from "@/components/json-ld";
 import { getArticlesByAuthor } from "@/lib/content";
-import { personJsonLd } from "@/lib/seo";
+import { buildPageMetadata, personJsonLd } from "@/lib/seo";
 import { authors, type AuthorSlug } from "@/lib/site";
 
 const authorSlugs = Object.keys(authors) as AuthorSlug[];
@@ -22,11 +22,11 @@ export async function generateMetadata({
   if (!author) {
     return { title: "Author" };
   }
-  return {
+  return buildPageMetadata({
     title: `${author.name} — ${author.role}`,
     description: author.bio,
-    alternates: { canonical: `/authors/${author.slug}/` },
-  };
+    path: `/authors/${author.slug}/`,
+  });
 }
 
 export default async function AuthorPage({

@@ -51,17 +51,17 @@ export function SiteFooter() {
           </p>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link href="/about" className="hover:text-primary">
+              <Link href="/about/" className="hover:text-primary">
                 About us
               </Link>
             </li>
             <li>
-              <Link href="/credits" className="hover:text-primary">
+              <Link href="/credits/" className="hover:text-primary">
                 Media credits
               </Link>
             </li>
             <li>
-              <Link href="/games" className="hover:text-primary">
+              <Link href="/games/" className="hover:text-primary">
                 Game hubs
               </Link>
             </li>

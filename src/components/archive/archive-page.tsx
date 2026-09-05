@@ -1,6 +1,6 @@
 import { ArticleCard } from "@/components/article/article-card";
 import { JsonLd } from "@/components/json-ld";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, collectionPageJsonLd } from "@/lib/seo";
 import type { Article } from "@/lib/types";
 
 export function ArchivePage({
@@ -8,20 +8,32 @@ export function ArchivePage({
   description,
   path,
   articles,
+  includeBreadcrumbs = true,
 }: {
   title: string;
   description: string;
   path: string;
   articles: Article[];
+  includeBreadcrumbs?: boolean;
 }) {
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
       <JsonLd
-        data={breadcrumbJsonLd([
-          { name: "Home", href: "/" },
-          { name: title, href: path },
-        ])}
+        data={collectionPageJsonLd({
+          name: title,
+          description,
+          path,
+          articles,
+        })}
       />
+      {includeBreadcrumbs ? (
+        <JsonLd
+          data={breadcrumbJsonLd([
+            { name: "Home", href: "/" },
+            { name: title, href: path },
+          ])}
+        />
+      ) : null}
       <p className="font-heading text-xs font-semibold tracking-[0.2em] text-primary uppercase">
         GamePlayer
       </p>

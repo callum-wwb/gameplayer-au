@@ -1,19 +1,39 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/json-ld";
 import { GameCover } from "@/components/media/game-cover";
 import { getListedHubs } from "@/lib/games";
+import { breadcrumbJsonLd, buildPageMetadata, collectionPageJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: "Game hubs",
   description:
-    "Evergreen and archive hubs for the games GamePlayer covers — each with credited promotional or editorial art.",
-};
+    "Evergreen and archive hubs for the games GamePlayer covers — Ghost of Yotei, Pokémon Legends Z-A, Metroid Prime 4, and the rest, each with credited art.",
+  path: "/games/",
+});
 
 export default function GamesIndexPage() {
   const hubs = getListedHubs();
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", href: "/" },
+          { name: "Game hubs", href: "/games/" },
+        ])}
+      />
+      <JsonLd
+        data={collectionPageJsonLd({
+          name: "Game hubs",
+          description:
+            "Evergreen and archive hubs for the games GamePlayer covers.",
+          path: "/games/",
+          articles: hubs.map((game) => ({
+            slug: `games/${game.slug}`,
+            title: game.title,
+          })),
+        })}
+      />
       <p className="font-heading text-xs font-semibold tracking-[0.2em] text-primary uppercase">
         Coverage
       </p>

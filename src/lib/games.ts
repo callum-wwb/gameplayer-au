@@ -25,6 +25,9 @@ export type GameHub = {
   steamAppId?: number;
   aliases: string[];
   image: CoverMedia;
+  seoTitle?: string;
+  seoDescription?: string;
+  faq?: { question: string; answer: string }[];
 };
 
 export const STEAM_APP_IDS = {
@@ -155,6 +158,26 @@ export const gameHubs: GameHub[] = [
     kind: "game",
     steamAppId: STEAM_APP_IDS["elden-ring"],
     aliases: ["Elden Ring", "Elden Ring: Shadow of the Erdtree"],
+    seoTitle: "Elden Ring reviews and guides Australia",
+    seoDescription:
+      "GamePlayer's Elden Ring hub — our 9.6 review, Shadow of the Erdtree notes, and whether the Lands Between is still worth buying in Australia in 2026.",
+    faq: [
+      {
+        question: "What is GamePlayer's Elden Ring review score?",
+        answer:
+          "9.6 / 10. The open world that respected your intelligence — still the decade's defining adventure.",
+      },
+      {
+        question: "Is Elden Ring worth buying in Australia in 2026?",
+        answer:
+          "Yes. Base game plus Shadow of the Erdtree still beats most 2026 launches on PS5, Xbox, or PC. Watch Steam AU and PSN AU sales before paying deluxe panic prices.",
+      },
+      {
+        question: "What platforms is Elden Ring on?",
+        answer:
+          "PC, PlayStation, and Xbox. PlayStation 5 is a great living-room way to play it in Australia; PC is the modding machine.",
+      },
+    ],
     image: steamCover({
       slug: "elden-ring",
       title: "Elden Ring",
@@ -182,6 +205,26 @@ export const gameHubs: GameHub[] = [
     kind: "game",
     steamAppId: STEAM_APP_IDS["baldurs-gate-3"],
     aliases: ["Baldur's Gate 3", "Baldurs Gate 3", "BG3"],
+    seoTitle: "Baldur's Gate 3 reviews and guides Australia",
+    seoDescription:
+      "GamePlayer's Baldur's Gate 3 hub — our 9.8 review, Honour Mode notes, PS5 split-screen, and why it is still the RPG benchmark in Australia.",
+    faq: [
+      {
+        question: "What is GamePlayer's Baldur's Gate 3 review score?",
+        answer:
+          "9.8 / 10. The RPG benchmark until someone spends this much on conversation trees again.",
+      },
+      {
+        question: "Is Baldur's Gate 3 worth buying in 2026?",
+        answer:
+          "Yes. A new campaign still beats most 2026 launches for density. Sales on Steam AU and PSN AU are frequent enough that you should not pay deluxe panic prices.",
+      },
+      {
+        question: "Does Baldur's Gate 3 have split-screen on PS5?",
+        answer:
+          "Yes, and it is generous. It also fights the UI when both players open a menu. Same-couch is a feature, not the intended first run.",
+      },
+    ],
     image: steamCover({
       slug: "baldurs-gate-3",
       title: "Baldur's Gate 3",
@@ -494,6 +537,26 @@ export const gameHubs: GameHub[] = [
       "Grand Theft Auto VI",
       "Grand Theft Auto 6",
     ],
+    seoTitle: "GTA 6 release date Australia, platforms, and pre-order notes",
+    seoDescription:
+      "GamePlayer's GTA 6 hub for Australia — 19 November 2026 on PS5 and Xbox Series, retailer listings, and why this is not a scored review yet.",
+    faq: [
+      {
+        question: "What is the GTA 6 release date in Australia?",
+        answer:
+          "Rockstar has dated Grand Theft Auto VI Thursday 19 November 2026 on PlayStation 5 and Xbox Series X/S. Australian storefronts unlock on that calendar date; exact hour depends on how Sony and Microsoft stagger the AU stores.",
+      },
+      {
+        question: "Is GTA 6 coming to PC at launch?",
+        answer:
+          "No PC date has been confirmed for launch. Coverage here treats PS5 and Xbox Series as the day-one platforms. A later PC port is widely expected and still unofficial.",
+      },
+      {
+        question: "Does GamePlayer have a GTA 6 review?",
+        answer:
+          "No. We have a preview and an Australia release-date guide. A scored review waits until we have played the shipped game.",
+      },
+    ],
     image: editorialCover({
       src: "/games/gta-6.jpg",
       title: "Grand Theft Auto VI",
@@ -698,6 +761,161 @@ export const gameHubs: GameHub[] = [
       publisher: "Capcom",
       developer: "Capcom",
       steamAppId: STEAM_APP_IDS["monster-hunter-wilds"],
+    }),
+  },
+  {
+    slug: "ghost-of-yotei",
+    title: "Ghost of Yotei",
+    shortTitle: "Ghost of Yotei",
+    tagline: "Atsu under the mountain",
+    description:
+      "Sucker Punch’s standalone Ghost sequel in 1600s Ezo. PS5 exclusive: our review, Australian pricing, and whether Atsu’s revenge is worth a first-party weekend.",
+    developer: "Sucker Punch Productions",
+    publisher: "Sony Interactive Entertainment",
+    copyrightOwner: "Sony Interactive Entertainment / Sucker Punch Productions",
+    platforms: ["PlayStation"],
+    released: "2025",
+    hue: 28,
+    evergreen: true,
+    listedHub: true,
+    kind: "game",
+    aliases: ["Ghost of Yotei", "Ghost of Yōtei", "Yotei"],
+    seoTitle: "Ghost of Yotei reviews, release date, and guides Australia",
+    seoDescription:
+      "GamePlayer's Ghost of Yotei hub — original PS5 review, 2 October 2025 Australian release notes, platforms, and FAQ. No PC or Xbox version at launch.",
+    faq: [
+      {
+        question: "Is Ghost of Yotei on PC or Xbox?",
+        answer:
+          "Not at launch and not as of this filing. Ghost of Yotei is a PlayStation 5 exclusive from Sucker Punch and Sony. There is no Steam page and no Xbox store listing.",
+      },
+      {
+        question: "When did Ghost of Yotei release in Australia?",
+        answer:
+          "2 October 2025, same global calendar date as other regions. It is out now on PS5, including PS5 Pro.",
+      },
+      {
+        question: "Is Ghost of Yotei a sequel to Ghost of Tsushima?",
+        answer:
+          "It is a standalone follow-up set about 300 years later. Jin Sakai is not the lead. You play Atsu, a mercenary hunting the Yotei Six in Ezo — modern-day Hokkaido.",
+      },
+      {
+        question: "How long is Ghost of Yotei?",
+        answer:
+          "A focused story lands around 25–35 hours. Side tales, shrines, and duels push most players into the 40–50 hour band.",
+      },
+    ],
+    image: editorialCover({
+      src: "/games/ghost-of-yotei.jpg",
+      title: "Ghost of Yotei",
+      copyrightOwner: "Sony Interactive Entertainment / Sucker Punch Productions",
+      publisher: "Sony Interactive Entertainment",
+      developer: "Sucker Punch Productions",
+      alt: "Original editorial artwork of a snow-capped volcanic mountain over golden grasslands — no characters or PlayStation logos",
+    }),
+  },
+  {
+    slug: "pokemon-legends-za",
+    title: "Pokémon Legends: Z-A",
+    shortTitle: "Pokémon Legends Z-A",
+    tagline: "Lumiose after dark",
+    description:
+      "Game Freak’s urban Pokémon return to Kalos. Switch and Switch 2: our review, Australian eShop pricing, and whether Mega Evolution in Lumiose is worth the trip.",
+    developer: "Game Freak",
+    publisher: "Nintendo / The Pokémon Company",
+    copyrightOwner:
+      "Nintendo, The Pokémon Company, Game Freak, and Creatures Inc.",
+    platforms: ["Nintendo Switch"],
+    released: "2025",
+    hue: 265,
+    evergreen: true,
+    listedHub: true,
+    kind: "game",
+    aliases: [
+      "Pokémon Legends: Z-A",
+      "Pokemon Legends Z-A",
+      "Pokemon Legends ZA",
+      "Pokemon ZA",
+      "Pokémon ZA",
+    ],
+    seoTitle: "Pokémon Legends Z-A reviews and guides Australia",
+    seoDescription:
+      "GamePlayer's Pokémon Legends Z-A hub — original review targeting Pokémon Legends ZA, Switch vs Switch 2, Australian pricing, and FAQ.",
+    faq: [
+      {
+        question: "Is Pokémon Legends Z-A the same as Pokémon ZA?",
+        answer:
+          "Yes. Australians search both. The full title is Pokémon Legends: Z-A. Our review lives at /pokemon-legends-za-review/ with a /pokemon-za-review/ redirect.",
+      },
+      {
+        question: "What platforms is Pokémon Legends Z-A on?",
+        answer:
+          "Nintendo Switch and Nintendo Switch 2. There is no PlayStation, Xbox, or Steam version. Buy the Switch 2 Edition if you already own the new hardware.",
+      },
+      {
+        question: "When did Pokémon Legends Z-A release in Australia?",
+        answer:
+          "16 October 2025, worldwide. It is out now on eShop AU and at EB Games / JB Hi-Fi.",
+      },
+    ],
+    image: editorialCover({
+      src: "/games/pokemon-legends-za.jpg",
+      title: "Pokémon Legends: Z-A",
+      copyrightOwner:
+        "Nintendo, The Pokémon Company, Game Freak, and Creatures Inc.",
+      publisher: "Nintendo / The Pokémon Company",
+      developer: "Game Freak",
+      alt: "Original editorial artwork of a twilight city of plazas and cream facades — no Pokémon, characters, or Nintendo logos",
+    }),
+  },
+  {
+    slug: "metroid-prime-4",
+    title: "Metroid Prime 4: Beyond",
+    shortTitle: "Metroid Prime 4",
+    tagline: "Samus on Viewros",
+    description:
+      "Retro Studios’ long-waited Prime sequel. Switch and Switch 2: our review, Sol Valley caveats, and whether Beyond is worth a first-party Nintendo weekend in Australia.",
+    developer: "Retro Studios",
+    publisher: "Nintendo",
+    copyrightOwner: "Nintendo",
+    platforms: ["Nintendo Switch"],
+    released: "2025",
+    hue: 175,
+    evergreen: true,
+    listedHub: true,
+    kind: "game",
+    aliases: [
+      "Metroid Prime 4",
+      "Metroid Prime 4: Beyond",
+      "Metroid Prime 4 Beyond",
+    ],
+    seoTitle: "Metroid Prime 4: Beyond reviews and guides Australia",
+    seoDescription:
+      "GamePlayer's Metroid Prime 4: Beyond hub — original review, Switch vs Switch 2, Australian pricing, and FAQ for the Retro Studios sequel.",
+    faq: [
+      {
+        question: "What platforms is Metroid Prime 4: Beyond on?",
+        answer:
+          "Nintendo Switch and Nintendo Switch 2. There is no PlayStation, Xbox, or Steam version. Switch 2 is the intended show.",
+      },
+      {
+        question: "When did Metroid Prime 4 release in Australia?",
+        answer:
+          "4 December 2025, worldwide. It is out now on eShop AU and at Australian retailers.",
+      },
+      {
+        question: "Is Metroid Prime 4: Beyond a sequel to Prime 3?",
+        answer:
+          "Yes — eighteen years after Corruption. Samus is stranded on Viewros with new psychic abilities. You do not need to replay the trilogy, but Prime Remastered is the kinder on-ramp.",
+      },
+    ],
+    image: editorialCover({
+      src: "/games/metroid-prime-4.jpg",
+      title: "Metroid Prime 4: Beyond",
+      copyrightOwner: "Nintendo",
+      publisher: "Nintendo",
+      developer: "Retro Studios",
+      alt: "Original editorial artwork of rust dunes and distant industrial spires under a teal sky — no characters or Nintendo logos",
     }),
   },
 ];

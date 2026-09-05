@@ -54,6 +54,61 @@ const nextConfig: NextConfig = {
         destination: "/games/hollow-knight-silksong/",
         permanent: true,
       },
+      {
+        source: "/ghost-of-yotei",
+        destination: "/games/ghost-of-yotei/",
+        permanent: true,
+      },
+      {
+        source: "/ghost-of-yotei-release-date",
+        destination: "/ghost-of-yotei-release-date-australia/",
+        permanent: true,
+      },
+      {
+        source: "/pokemon-za-review",
+        destination: "/pokemon-legends-za-review/",
+        permanent: true,
+      },
+      {
+        source: "/pokemon-legends-za",
+        destination: "/games/pokemon-legends-za/",
+        permanent: true,
+      },
+      {
+        source: "/pokemon-za",
+        destination: "/games/pokemon-legends-za/",
+        permanent: true,
+      },
+      {
+        source: "/metroid-prime-4-beyond-review",
+        destination: "/metroid-prime-4-review/",
+        permanent: true,
+      },
+      {
+        source: "/metroid-prime-4",
+        destination: "/games/metroid-prime-4/",
+        permanent: true,
+      },
+      {
+        source: "/gta-6-release-date",
+        destination: "/gta-6-release-date-australia/",
+        permanent: true,
+      },
+      {
+        source: "/gta-6-australia",
+        destination: "/gta-6-release-date-australia/",
+        permanent: true,
+      },
+      {
+        source: "/xbox-game-pass-ultimate",
+        destination: "/xbox-game-pass-ultimate-australia/",
+        permanent: true,
+      },
+      {
+        source: "/game-pass-ultimate-australia",
+        destination: "/xbox-game-pass-ultimate-australia/",
+        permanent: true,
+      },
     ];
   },
   images: {

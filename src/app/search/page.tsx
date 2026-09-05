@@ -2,11 +2,14 @@ import { Suspense } from "react";
 import { ArchivePage } from "@/components/archive/archive-page";
 import { SearchForm } from "@/components/layout/search-form";
 import { searchArticles } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Search",
+export const metadata = buildPageMetadata({
+  title: "Search GamePlayer",
   description: "Search GamePlayer reviews, news, previews, opinion, and video.",
-};
+  path: "/search/",
+  robots: { index: false, follow: true },
+});
 
 async function SearchResults({
   searchParams,
@@ -38,7 +41,7 @@ async function SearchResults({
               ? "Matching stories from the editorial archive."
               : "No stories matched that query. Try a game, platform, or author topic."
           }
-          path={`/search?q=${encodeURIComponent(query)}`}
+          path={`/search/?q=${encodeURIComponent(query)}`}
           articles={articles}
         />
       ) : (

@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { GameCover } from "@/components/media/game-cover";
 import { allCreditRows } from "@/lib/article-covers";
 import { STEAM_APP_IDS } from "@/lib/games";
+import { buildPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: "Media credits",
   description:
     "Copyright and trademark credits for game artwork used on GamePlayer. GamePlayer does not own third-party game art.",
-};
+  path: "/credits/",
+});
 
 export default function CreditsPage() {
   const rows = allCreditRows();
@@ -35,10 +36,11 @@ export default function CreditsPage() {
           credit on every image. Where no official still was available — notably{" "}
           <em>StarCraft II</em> (Battle.net, not Steam), Nintendo first-party
           titles without a Steam page (<em>Mario Kart World</em>,{" "}
-          <em>Donkey Kong Bananza</em>), <em>Death Stranding 2</em> (Steam art
-          not yet public at filing), and unreleased{" "}
-          <em>Grand Theft Auto VI</em> — we commissioned an original abstract
-          editorial illustration. Those cards use mood and palette only: no
+          <em>Donkey Kong Bananza</em>, <em>Ghost of Yotei</em>,{" "}
+          <em>Pokémon Legends: Z-A</em>, <em>Metroid Prime 4: Beyond</em>),{" "}
+          <em>Death Stranding 2</em> (Steam art not yet public at filing), and
+          unreleased <em>Grand Theft Auto VI</em> — we commissioned an original
+          abstract editorial illustration. Those cards use mood and palette only: no
           character likenesses and no copied box art. The title credit still
           belongs to the rights holder.
         </p>

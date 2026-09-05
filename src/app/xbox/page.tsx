@@ -1,12 +1,14 @@
 import { ArchivePage } from "@/components/archive/archive-page";
 import { getArticlesByPlatform } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/seo";
 import { platforms } from "@/lib/site";
 
-export const metadata = {
+export const metadata = buildPageMetadata({
   title: "Xbox and Game Pass games Australia",
   description:
-    "Game Pass, Series hardware, and multiplatform reviews — Expedition 33, Wilds, Elden Ring — from GamePlayer AU.",
-};
+    "Xbox Game Pass Ultimate Australia, Series hardware, and multiplatform reviews from GamePlayer AU.",
+  path: "/xbox/",
+});
 
 export default function XboxPage() {
   return (
