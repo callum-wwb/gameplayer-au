@@ -188,7 +188,8 @@ export default async function ArticlePage({
                 <span className="text-muted-foreground"> — reviews, guides, and FAQ.</span>
               </li>
             ))}
-            {article.platforms.includes("playstation") ? (
+            {article.platforms.includes("playstation") &&
+            article.slug !== "best-ps5-games-2026" ? (
               <li>
                 <Link href="/best-ps5-games-2026/" className="text-primary hover:underline">
                   Best PS5 games 2026
