@@ -10,7 +10,7 @@ export function SearchForm({
   compact?: boolean;
 }) {
   return (
-    <form action="/search" method="get" className="flex w-full gap-2">
+    <form action="/search/" method="get" className="flex w-full gap-2">
       <div className="relative flex-1">
         <Search className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
         <Input

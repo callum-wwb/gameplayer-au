@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { buildPageMetadata } from "@/lib/seo";
 import { authors, siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "About",
+export const metadata = buildPageMetadata({
+  title: "About GamePlayer",
   description:
     "GamePlayer is an independent Australian games desk — reviews out of 10, news, previews, and opinion.",
-};
+  path: "/about/",
+});
 
 export default function AboutPage() {
   return (
@@ -25,8 +26,11 @@ export default function AboutPage() {
           This rebuild keeps the 2020 GamePlayer sections — News, Reviews,
           Previews, Opinion, Videos — and the evergreen hubs for Dota 2, Skyrim,
           StarCraft 2, and{" "}
-          <Link href="/games/hollow-knight-silksong/">Silksong</Link>. We cover
-          modern living-room games — Elden Ring, Baldur&apos;s Gate 3, Mario Kart
+          <Link href="/games/hollow-knight-silksong/">Silksong</Link>,{" "}
+          <Link href="/games/ghost-of-yotei/">Ghost of Yotei</Link>, and{" "}
+          <Link href="/games/pokemon-legends-za/">Pokémon Legends Z-A</Link>. We cover
+          modern living-room games — Ghost of Yotei, Pokémon Legends Z-A,
+          Metroid Prime 4: Beyond, Elden Ring, Baldur&apos;s Gate 3, Mario Kart
           World, Expedition 33, Death Stranding 2 — plus first-class
           PlayStation, Xbox, and Nintendo Switch filters alongside PC, Mobile,
           and Classic.

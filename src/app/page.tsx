@@ -8,6 +8,14 @@ import {
   getRecentArticles,
   getRecentReviews,
 } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
+
+export const metadata = buildPageMetadata({
+  title: "News and Gaming Reviews Australia",
+  description: siteConfig.description,
+  path: "/",
+});
 
 export default function HomePage() {
   const hero = getHeroArticles(4);
@@ -33,7 +41,7 @@ export default function HomePage() {
             Latest GamePlayer Articles
           </h2>
           <Button asChild variant="outline" size="sm">
-            <Link href="/news">See all articles »</Link>
+            <Link href="/news/">See all articles »</Link>
           </Button>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -77,7 +85,7 @@ export default function HomePage() {
               <Link href="/feed.xml">Subscribe via RSS</Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href="/about">About the desk</Link>
+              <Link href="/about/">About the desk</Link>
             </Button>
           </div>
         </div>

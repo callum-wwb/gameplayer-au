@@ -58,31 +58,31 @@ export const articleTypes: Record<
 > = {
   news: {
     label: "News",
-    href: "/news",
+    href: "/news/",
     description:
-      "Australian-time headlines from every platform — patches, launches, and industry moves.",
+      "Australian-time headlines from every platform — patches, launches, release dates, and industry moves.",
   },
   review: {
     label: "Reviews",
-    href: "/reviews",
+    href: "/reviews/",
     description:
-      "Scored verdicts out of 10. We play the game, then we tell you if it is worth your weekend.",
+      "Scored GamePlayer verdicts out of 10, written in Australia. We play the game, then we tell you if it is worth your weekend.",
   },
   preview: {
     label: "Previews",
-    href: "/previews",
+    href: "/previews/",
     description:
       "Hands-on first hours, showcase impressions, and what to watch before launch day.",
   },
   opinion: {
     label: "Opinion",
-    href: "/opinion",
+    href: "/opinion/",
     description:
-      "Listicles, arguments, and the takes you will argue about in the group chat.",
+      "Listicles, buying arguments, and the takes you will argue about in the group chat.",
   },
   video: {
     label: "Videos",
-    href: "/videos",
+    href: "/videos/",
     description:
       "Show reports, features, and editor-led video from the Australian scene.",
   },
@@ -94,45 +94,45 @@ export const platforms: Record<
 > = {
   pc: {
     label: "PC",
-    href: "/pc",
+    href: "/pc/",
     short: "PC",
     description:
       "Steam, Battle.net, and the evergreen PC library — from Dota 2 to the latest RPG.",
   },
   mobile: {
     label: "Mobile",
-    href: "/mobile",
+    href: "/mobile/",
     short: "Mobile",
     description:
       "iOS and Android games that actually respect your time — and a few that steal it.",
   },
   classic: {
     label: "Classic",
-    href: "/classic",
+    href: "/classic/",
     short: "Classic",
     description:
       "Atari to Dreamcast, cabinets to cartridges. The machines that built the hobby.",
   },
   playstation: {
     label: "PlayStation",
-    href: "/playstation",
+    href: "/playstation/",
     short: "PS",
     description:
-      "Best PS5 games in 2026, Plus Extra and Premium, and first-party showcases with Australian pricing.",
+      "Best PS5 games in 2026, Ghost of Yotei, PlayStation Plus Extra and Premium, and first-party showcases with Australian pricing.",
   },
   xbox: {
     label: "Xbox",
-    href: "/xbox",
+    href: "/xbox/",
     short: "Xbox",
     description:
-      "Game Pass drops, Series hardware, and the multiplatform releases that matter here.",
+      "Xbox Game Pass Ultimate Australia pricing, Series hardware, and the multiplatform releases that matter here.",
   },
   nintendo: {
     label: "Nintendo Switch",
-    href: "/nintendo",
+    href: "/nintendo/",
     short: "Switch",
     description:
-      "Switch 2, Mario Kart World, Silksong, and Nintendo Direct fallout — handheld first, always.",
+      "Switch 2, Pokémon Legends Z-A, Metroid Prime 4: Beyond, Mario Kart World, and Silksong — handheld first, always.",
   },
 };
 
@@ -206,6 +206,16 @@ export const authors = {
 
 export type AuthorSlug = keyof typeof authors;
 
+export function withTrailingSlash(path: string) {
+  if (!path || path === "/") return "/";
+  const hashIndex = path.indexOf("#");
+  const hash = hashIndex >= 0 ? path.slice(hashIndex) : "";
+  const withoutHash = hashIndex >= 0 ? path.slice(0, hashIndex) : path;
+  const [pathname, query] = withoutHash.split("?");
+  const slashed = pathname.endsWith("/") ? pathname : `${pathname}/`;
+  return `${slashed}${query ? `?${query}` : ""}${hash}`;
+}
+
 export function absoluteUrl(path = "/") {
   const normalised = path.startsWith("/") ? path : `/${path}`;
   try {
@@ -214,3 +224,10 @@ export function absoluteUrl(path = "/") {
     return new URL(normalised, DEFAULT_SITE_URL).toString();
   }
 }
+
+export function canonicalUrl(path = "/") {
+  return absoluteUrl(withTrailingSlash(path));
+}
+
+export const organizationId = `${siteConfig.url}/#organization`;
+export const websiteId = `${siteConfig.url}/#website`;

@@ -19,7 +19,7 @@ import {
 } from "@/lib/content";
 import { imageObjectJsonLd } from "@/lib/media";
 import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd } from "@/lib/seo";
-import { absoluteUrl, articleTypes, authors, platforms } from "@/lib/site";
+import { absoluteUrl, articleTypes, authors, platforms, withTrailingSlash } from "@/lib/site";
 
 export function generateStaticParams() {
   return getAllArticles().map((article) => ({ slug: article.slug }));
@@ -40,6 +40,8 @@ export async function generateMetadata({
 
   const title = article.seoTitle ?? article.title;
   const description = article.seoDescription ?? article.excerpt;
+  const path = withTrailingSlash(`/${article.slug}`);
+  const ogImage = `/${article.slug}/opengraph-image`;
 
   return {
     title,
@@ -56,10 +58,17 @@ export async function generateMetadata({
       description,
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt ?? article.publishedAt,
-      url: `/${article.slug}/`,
+      url: path,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
     },
     alternates: {
-      canonical: `/${article.slug}/`,
+      canonical: path,
     },
     other: {
       "copyright-owner": media.copyrightOwner,
@@ -98,7 +107,7 @@ export default async function ArticlePage({
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", href: "/" },
-          { name: typeMeta.label, href: typeMeta.href },
+          { name: typeMeta.label, href: withTrailingSlash(typeMeta.href) },
           { name: article.title, href: `/${article.slug}/` },
         ])}
       />
@@ -166,6 +175,39 @@ export default async function ArticlePage({
           , {author.role}. {author.bio}
         </p>
       </div>
+
+      {taggedGames.length > 0 ? (
+        <section className="mx-auto mt-10 max-w-3xl">
+          <h2 className="font-heading text-xl font-semibold">Related reading</h2>
+          <ul className="mt-3 space-y-2 text-sm">
+            {taggedGames.map((game) => (
+              <li key={game.slug}>
+                <Link href={`/games/${game.slug}/`} className="text-primary hover:underline">
+                  {game.title} hub
+                </Link>
+                <span className="text-muted-foreground"> — reviews, guides, and FAQ.</span>
+              </li>
+            ))}
+            {article.platforms.includes("playstation") ? (
+              <li>
+                <Link href="/best-ps5-games-2026/" className="text-primary hover:underline">
+                  Best PS5 games 2026
+                </Link>
+                <span className="text-muted-foreground"> — Australian living-room list.</span>
+              </li>
+            ) : null}
+            {article.platforms.includes("xbox") &&
+            article.slug !== "xbox-game-pass-ultimate-australia" ? (
+              <li>
+                <Link href="/xbox-game-pass-ultimate-australia/" className="text-primary hover:underline">
+                  Xbox Game Pass Ultimate Australia
+                </Link>
+                <span className="text-muted-foreground"> — tiers, AUD pricing, when to subscribe.</span>
+              </li>
+            ) : null}
+          </ul>
+        </section>
+      ) : null}
 
       {related.length > 0 ? (
         <section className="mt-16">

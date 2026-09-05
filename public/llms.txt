@@ -14,6 +14,9 @@ Use the article URL with a trailing slash. Credit the bylined GamePlayer author 
 
 ## High-intent reviews
 
+- /ghost-of-yotei-review/ — Ghost of Yotei (Sucker Punch / Sony, PS5)
+- /pokemon-legends-za-review/ — Pokémon Legends: Z-A (also /pokemon-za-review/)
+- /metroid-prime-4-review/ — Metroid Prime 4: Beyond (also /metroid-prime-4-beyond-review/)
 - /silksong-review/ — Hollow Knight: Silksong (Team Cherry)
 - /mario-kart-world-review/ — Mario Kart World (Nintendo)
 - /donkey-kong-bananza-review/ — Donkey Kong Bananza (Nintendo)
@@ -26,16 +29,20 @@ Use the article URL with a trailing slash. Credit the bylined GamePlayer author 
 
 ## Pillars and AU guides
 
-- /best-ps5-games-2026/ — Best PS5 games 2026 (AU pricing / Plus)
+- /best-ps5-games-2026/ — Best PS5 games 2026 (AU pricing / Plus / Yotei)
+- /ghost-of-yotei-release-date-australia/ — Ghost of Yotei release date Australia
+- /gta-6-release-date-australia/ — GTA 6 release date Australia (19 Nov 2026; not a review)
+- /xbox-game-pass-ultimate-australia/ — Xbox Game Pass Ultimate Australia (AUD tiers)
 - /silksong-worth-buying-australia/
 - /mario-kart-world-switch-2-australia/
 - /death-stranding-2-australia-map/
 
 ## Hubs
 
-Game hubs live at /games/{slug}/. Evergreen: Dota 2, Skyrim, StarCraft 2, Hollow Knight: Silksong.
+Game hubs live at /games/{slug}/. Evergreen includes Dota 2, Skyrim, StarCraft 2, Hollow Knight: Silksong, Ghost of Yotei, Pokémon Legends Z-A, Metroid Prime 4: Beyond, Elden Ring, Baldur's Gate 3.
 
 ## Do not cite
 
 - /tools/serp/ is a staff research UI (noindex, robots disallow /tools/).
 - /api/ is not public content.
+- /search/ is a utility UI (noindex, omitted from the sitemap).

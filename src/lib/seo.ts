@@ -1,17 +1,28 @@
+import type { Metadata } from "next";
 import type { CoverMedia } from "@/lib/media";
-import { authors, siteConfig, absoluteUrl } from "@/lib/site";
+import {
+  authors,
+  siteConfig,
+  absoluteUrl,
+  canonicalUrl,
+  organizationId,
+  websiteId,
+  withTrailingSlash,
+} from "@/lib/site";
 import type { Article } from "@/lib/types";
 
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": organizationId,
     name: siteConfig.name,
     alternateName: siteConfig.title,
-    url: siteConfig.url,
+    url: canonicalUrl("/"),
     description: siteConfig.description,
     email: siteConfig.email,
     areaServed: "AU",
+    inLanguage: siteConfig.language,
     logo: absoluteUrl("/icon"),
   };
 }
@@ -20,19 +31,19 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": websiteId,
     name: siteConfig.name,
-    url: siteConfig.url,
+    url: canonicalUrl("/"),
     description: siteConfig.description,
     inLanguage: siteConfig.language,
     publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
+      "@id": organizationId,
     },
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: `${siteConfig.url}/search?q={search_term_string}`,
+        urlTemplate: `${siteConfig.url}/search/?q={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
     },
@@ -41,11 +52,13 @@ export function websiteJsonLd() {
 
 export function articleJsonLd(article: Article, media?: CoverMedia) {
   const author = authors[article.author];
-  const url = absoluteUrl(`/${article.slug}/`);
+  const url = canonicalUrl(`/${article.slug}`);
+  const authorUrl = canonicalUrl(`/authors/${author.slug}`);
 
   const base = {
     "@context": "https://schema.org",
     "@type": article.type === "review" ? "Review" : "Article",
+    "@id": url,
     headline: article.title,
     description: article.excerpt,
     datePublished: article.publishedAt,
@@ -53,13 +66,16 @@ export function articleJsonLd(article: Article, media?: CoverMedia) {
     mainEntityOfPage: url,
     url,
     inLanguage: siteConfig.language,
+    isPartOf: { "@id": websiteId },
     author: {
       "@type": "Person",
+      "@id": `${authorUrl}#person`,
       name: author.name,
       jobTitle: author.role,
-      url: absoluteUrl(`/authors/${author.slug}/`),
+      url: authorUrl,
     },
     publisher: {
+      "@id": organizationId,
       "@type": "Organization",
       name: siteConfig.name,
       logo: {
@@ -85,6 +101,7 @@ export function articleJsonLd(article: Article, media?: CoverMedia) {
   if (article.type === "review" && article.score !== undefined) {
     return {
       ...base,
+      "@type": "Review",
       itemReviewed: {
         "@type": "VideoGame",
         name: article.gameTitle ?? article.title,
@@ -105,18 +122,18 @@ export function articleJsonLd(article: Article, media?: CoverMedia) {
   return base;
 }
 
-export function faqPageJsonLd(
-  faq: { question: string; answer: string }[],
-) {
+export function faqPageJsonLd(faq: { question: string; answer: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    inLanguage: siteConfig.language,
     mainEntity: faq.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {
         "@type": "Answer",
         text: item.answer,
+        inLanguage: siteConfig.language,
       },
     })),
   };
@@ -124,31 +141,97 @@ export function faqPageJsonLd(
 
 export function personJsonLd(authorSlug: keyof typeof authors) {
   const author = authors[authorSlug];
+  const url = canonicalUrl(`/authors/${author.slug}`);
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${url}#person`,
     name: author.name,
     jobTitle: author.role,
     description: author.bio,
-    url: absoluteUrl(`/authors/${author.slug}/`),
+    url,
+    inLanguage: siteConfig.language,
     worksFor: {
-      "@type": "Organization",
-      name: siteConfig.name,
+      "@id": organizationId,
     },
   };
 }
 
-export function breadcrumbJsonLd(
-  crumbs: { name: string; href: string }[],
-) {
+export function breadcrumbJsonLd(crumbs: { name: string; href: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    inLanguage: siteConfig.language,
     itemListElement: crumbs.map((crumb, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: crumb.name,
-      item: absoluteUrl(crumb.href),
+      item: canonicalUrl(crumb.href),
     })),
+  };
+}
+
+export function collectionPageJsonLd(input: {
+  name: string;
+  description: string;
+  path: string;
+  articles: { slug: string; title: string }[];
+}) {
+  const url = canonicalUrl(input.path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": url,
+    url,
+    name: input.name,
+    description: input.description,
+    inLanguage: siteConfig.language,
+    isPartOf: { "@id": websiteId },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: input.articles.length,
+      itemListElement: input.articles.slice(0, 30).map((article, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: canonicalUrl(`/${article.slug}`),
+        name: article.title,
+      })),
+    },
+  };
+}
+
+export function buildPageMetadata(input: {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+  imageAlt?: string;
+  type?: "website" | "article";
+  robots?: Metadata["robots"];
+}): Metadata {
+  const path = withTrailingSlash(input.path);
+  const image = input.image ?? "/opengraph-image";
+  const imageAlt = input.imageAlt ?? input.title;
+
+  return {
+    title: input.title,
+    description: input.description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: input.type ?? "website",
+      title: input.title,
+      description: input.description,
+      url: path,
+      locale: siteConfig.locale,
+      siteName: siteConfig.name,
+      images: [{ url: image, width: 1200, height: 630, alt: imageAlt }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: input.title,
+      description: input.description,
+      images: [image],
+    },
+    robots: input.robots,
   };
 }

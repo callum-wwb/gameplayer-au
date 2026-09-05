@@ -27,6 +27,8 @@ export type ArticleFrontmatter = {
   seoDescription?: string;
   faq?: { question: string; answer: string }[];
   playtime?: string;
+  pros?: string[];
+  cons?: string[];
 };
 
 export type Article = ArticleFrontmatter & {
