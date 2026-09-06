@@ -56,6 +56,26 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/contact/" className="hover:text-primary">
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link href="/editorial-policy/" className="hover:text-primary">
+                Editorial policy
+              </Link>
+            </li>
+            <li>
+              <Link href="/corrections/" className="hover:text-primary">
+                Corrections
+              </Link>
+            </li>
+            <li>
+              <Link href="/community/" className="hover:text-primary">
+                Community
+              </Link>
+            </li>
+            <li>
               <Link href="/credits/" className="hover:text-primary">
                 Media credits
               </Link>
@@ -96,6 +116,12 @@ export function SiteFooter() {
             <Rss className="size-4" />
             RSS feed
           </Link>
+          <Link
+            href="/news/feed.xml"
+            className="mt-2 block text-sm hover:text-primary"
+          >
+            News RSS
+          </Link>
         </div>
       </div>
       <div className="border-t border-border/60">
@@ -106,6 +132,10 @@ export function SiteFooter() {
           their respective owners and publishers — not to GamePlayer.{" "}
           <Link href="/credits/" className="underline-offset-2 hover:text-primary hover:underline">
             Media credits
+          </Link>
+          .{" "}
+          <Link href="/staff/moderation/" className="text-muted-foreground/70 hover:text-muted-foreground">
+            Staff
           </Link>
           .
         </p>

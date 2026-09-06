@@ -40,6 +40,10 @@ export const siteConfig = {
   language: "en-AU",
   country: "Australia",
   email: "editors@gameplayer.com.au",
+  tipsEmail: "tips@gameplayer.com.au",
+  logoPath: "/logo.png",
+  logoSvgPath: "/logo.svg",
+  newsLanguage: "en",
 } as const;
 
 export type ArticleType = "news" | "review" | "preview" | "opinion" | "video";
@@ -170,6 +174,13 @@ export const originalHubs = [
   { label: "Skyrim", href: "/games/skyrim/" },
   { label: "Starcraft 2", href: "/games/starcraft-2/" },
 ] as const;
+
+export const commentableTypes: ArticleType[] = [
+  "news",
+  "review",
+  "preview",
+  "opinion",
+];
 
 export const authors = {
   "jess-nguyen": {

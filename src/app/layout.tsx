@@ -62,12 +62,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
     types: {
-      "application/rss+xml": "/feed.xml",
+      "application/rss+xml": [
+        { url: "/feed.xml", title: "GamePlayer" },
+        { url: "/news/feed.xml", title: "GamePlayer News" },
+      ],
     },
   },
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: [{ url: "/icon", type: "image/png" }],
   },
 };
 
