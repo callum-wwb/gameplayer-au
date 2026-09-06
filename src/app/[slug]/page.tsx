@@ -11,15 +11,23 @@ import { GameCover } from "@/components/media/game-cover";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { resolveArticleCover, resolveArticleGames } from "@/lib/article-covers";
+import { CommentThread } from "@/components/community/comment-thread";
 import {
-  formatDate,
+  formatDateLong,
   getAllArticles,
   getArticle,
   getRelatedArticles,
 } from "@/lib/content";
 import { imageObjectJsonLd } from "@/lib/media";
 import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd } from "@/lib/seo";
-import { absoluteUrl, articleTypes, authors, platforms, withTrailingSlash } from "@/lib/site";
+import {
+  absoluteUrl,
+  articleTypes,
+  authors,
+  commentableTypes,
+  platforms,
+  withTrailingSlash,
+} from "@/lib/site";
 
 export function generateStaticParams() {
   return getAllArticles().map((article) => ({ slug: article.slug }));
@@ -114,6 +122,11 @@ export default async function ArticlePage({
 
       <p className="font-heading text-xs font-semibold tracking-[0.2em] text-primary uppercase">
         <Link href={typeMeta.href}>{typeMeta.label}</Link>
+        {article.type === "news" ? (
+          <span className="ml-3 rounded-full border border-primary/40 px-2 py-0.5 text-[10px] tracking-[0.18em]">
+            News
+          </span>
+        ) : null}
       </p>
       <h1 className="mt-3 max-w-4xl font-heading text-4xl font-bold tracking-tight text-balance sm:text-5xl">
         {article.title}
@@ -121,16 +134,31 @@ export default async function ArticlePage({
       <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
         {article.excerpt}
       </p>
-      <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-        <Link href={`/authors/${author.slug}/`} className="hover:text-primary">
-          {author.name}
-        </Link>
-        <span aria-hidden="true">·</span>
-        <time dateTime={article.publishedAt}>
-          {formatDate(article.publishedAt)}
-        </time>
-        <span aria-hidden="true">·</span>
-        <span>{article.readingMinutes} min read</span>
+      <div className="mt-6 flex flex-wrap items-end gap-x-8 gap-y-4 border-y border-border/70 py-4">
+        <div>
+          <p className="text-[11px] font-semibold tracking-[0.16em] text-muted-foreground uppercase">
+            Byline
+          </p>
+          <Link
+            href={`/authors/${author.slug}/`}
+            className="font-heading text-base font-semibold hover:text-primary"
+          >
+            {author.name}
+          </Link>
+          <p className="text-xs text-muted-foreground">{author.role}</p>
+        </div>
+        <div>
+          <p className="text-[11px] font-semibold tracking-[0.16em] text-muted-foreground uppercase">
+            Published
+          </p>
+          <time
+            dateTime={article.publishedAt}
+            className="font-heading text-base font-semibold"
+          >
+            {formatDateLong(article.publishedAt)}
+          </time>
+        </div>
+        <p className="text-sm text-muted-foreground">{article.readingMinutes} min read</p>
       </div>
       <div className="mt-4 flex flex-wrap gap-2">
         {article.platforms.map((platform) => (
@@ -174,6 +202,13 @@ export default async function ArticlePage({
           </Link>
           , {author.role}. {author.bio}
         </p>
+        {commentableTypes.includes(article.type) ? (
+          <CommentThread
+            slug={article.slug}
+            title={article.title}
+            allowScore={article.type === "review"}
+          />
+        ) : null}
       </div>
 
       {taggedGames.length > 0 ? (

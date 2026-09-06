@@ -12,6 +12,7 @@ const ARTICLE_CREDIT_TITLES: Record<string, string> = {
   "playstation-plus-extra-april-drop": "PlayStation Plus Extra",
   "xbox-game-pass-adds-indie-wave": "Xbox Game Pass",
   "xbox-game-pass-ultimate-australia": "Xbox Game Pass Ultimate",
+  "xbox-game-pass-australia-tier-reminder": "Xbox Game Pass",
   "top-5-gaming-consoles-of-all-time": "Best consoles listicle",
   "top-4-worst-consoles-of-all-time": "Worst consoles listicle",
   "mobile-gaming-is-the-real-mainstream": "Mobile gaming opinion",
@@ -40,6 +41,15 @@ export const articleCovers: Record<string, CoverMedia> = {
   "xbox-game-pass-ultimate-australia": editorialCover({
     src: "/articles/xbox-game-pass-adds-indie-wave.jpg",
     title: "Xbox Game Pass Ultimate",
+    copyrightOwner: "Microsoft Corporation",
+    publisher: "Microsoft Corporation",
+    developer: "Xbox Game Studios",
+    alt: "Original editorial artwork evoking a subscription library shelf — no Xbox logos or controller copies",
+    licenseNote: LICENSE_PLATFORM,
+  }),
+  "xbox-game-pass-australia-tier-reminder": editorialCover({
+    src: "/articles/xbox-game-pass-adds-indie-wave.jpg",
+    title: "Xbox Game Pass",
     copyrightOwner: "Microsoft Corporation",
     publisher: "Microsoft Corporation",
     developer: "Xbox Game Studios",

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Gamepad2, Monitor, Smartphone, Joystick } from "lucide-react";
+import { Monitor, Smartphone, Joystick } from "lucide-react";
+import { SiteLogo } from "@/components/brand/site-logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { SearchForm } from "@/components/layout/search-form";
 import { getEvergreenHubs } from "@/lib/games";
@@ -27,9 +28,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
         <MobileNav />
         <Link href="/" className="flex items-center gap-2">
-          <span className="flex size-9 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_0_18px_-6px_var(--neon)]">
-            <Gamepad2 className="size-5" />
-          </span>
+          <SiteLogo />
           <span className="leading-tight">
             <span className="block font-heading text-lg font-bold tracking-tight">
               {siteConfig.name}

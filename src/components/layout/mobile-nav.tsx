@@ -71,6 +71,12 @@ export function MobileNav() {
             <Link href="/games/" className="text-sm text-muted-foreground">
               All game hubs
             </Link>
+            <Link href="/community/" className="text-sm text-muted-foreground">
+              Community
+            </Link>
+            <Link href="/about/" className="text-sm text-muted-foreground">
+              About
+            </Link>
             <Link href="/credits/" className="text-sm text-muted-foreground">
               Media credits
             </Link>

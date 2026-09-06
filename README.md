@@ -10,7 +10,9 @@ This is a native Next.js App Router site (not WordPress): scored reviews, news, 
 
 - Next.js App Router (TypeScript) + Tailwind CSS v4 + [shadcn/ui](https://ui.shadcn.com)
 - MDX editorial archive in `content/articles/` (reviews, news, previews, opinion, video)
-- Review scores out of 10 + schema.org `Review` / `Article` / `Organization` / `WebSite`
+- Review scores out of 10 + schema.org `NewsArticle` / `Review` / `Article` / `Organization` / `WebSite`
+- Google News sitemap at `/news-sitemap.xml` (last two days) + full RSS / news RSS
+- Moderated reader comments and tips (Neon Postgres; optional)
 - Dark charcoal + neon editorial theme
 - Server-only [SerpAPI](https://serpapi.com) Google Search helpers
 
@@ -41,12 +43,16 @@ npm start
 | `/credits` | Public ledger of image copyright and trademark credits |
 | `/{article-slug}/` | Clean SEO article URLs |
 | `/search?q=` | Full-archive search |
-| `/about` | Masthead and site notes |
+| `/about` `/contact` `/editorial-policy` `/corrections` | Masthead, tips mailbox, standards, corrections log |
+| `/community` `/submit-tip` | Approved tips + reader tip form |
 | `/authors/[slug]/` | Author archives + Person JSON-LD |
 | `/llms.txt` | Concise AI-citation notes |
-| `/feed.xml` | RSS |
-| `/sitemap.xml` `/robots.txt` | Crawlers |
+| `/feed.xml` `/news/feed.xml` | Full RSS and news-only RSS |
+| `/sitemap.xml` `/news-sitemap.xml` `/robots.txt` | Crawlers (News sitemap is last two days only) |
+| `/logo.png` `/logo.svg` | Publication logo (square, 512px PNG) |
+| `/staff/moderation` | Comment/tip queue (`MODERATION_SECRET`; **not in public nav**) |
 | `/tools/serp` | Editor SERP research UI (**gate before production**) |
+| `/api/comments` `/api/tips` `/api/staff/moderation` | UGC write/read + staff queue |
 | `/api/serp/search` `/api/serp/related` | Server-only SerpAPI proxies |
 
 ## SerpAPI
@@ -68,7 +74,35 @@ If the key is missing, the API returns a graceful empty snapshot with an explana
 3. Add environment variables:
    - `NEXT_PUBLIC_SITE_URL` = `https://www.gameplayer.com.au` (or the preview URL while testing)
    - `SERPAPI_API_KEY` = your server-only key (Production / Preview as needed)
+   - `DATABASE_URL` = Neon connection string (optional until UGC is live)
+   - `MODERATION_SECRET` = staff queue password (8+ characters)
 4. Deploy.
+
+## Community / Neon
+
+Comments and tips need Postgres. The site **builds and runs without** `DATABASE_URL` — forms show “Community is almost ready” and write APIs return 503.
+
+1. In the Vercel project `gameplayer-au`: **Storage → Create Database → Neon**.
+2. Confirm `DATABASE_URL` is set for Production (and Preview if you want to test UGC there).
+3. In the Neon SQL editor, run `db/schema.sql`.
+4. Set `MODERATION_SECRET` on the project.
+5. Open `/staff/moderation`, enter the secret (or send `x-moderation-secret` / `Authorization: Bearer …`). Pending items start hidden; **approve** to publish, **reject** to keep them hidden.
+
+Staff auth is deliberately simple: cookie after unlock, header, or `?secret=` on GET. Do not link the secret in the public nav. `/staff/` is robots-disallowed.
+
+Spam basics on write paths: honeypot field, minimum time-on-form (3s), in-memory IP-hash rate limit, length caps, HTML stripped, link-flood rejected. Emails are stored for the desk and never rendered publicly.
+
+## Google Publisher Center (manual)
+
+Engineering cannot finish News enrollment. After deploy, Callum still needs to:
+
+1. Verify `gameplayer.com.au` / `www.gameplayer.com.au` in [Google Search Console](https://search.google.com/search-console).
+2. Open [Publisher Center](https://publishercenter.google.com/), add publication **GamePlayer**.
+3. Submit the publication logo (`https://www.gameplayer.com.au/logo.png` — square, 512×512; Google asks for at least 112×112).
+4. Submit `/news-sitemap.xml` (and the main `/sitemap.xml` in Search Console).
+5. Confirm the masthead pages (`/about`, `/contact`, `/editorial-policy`) match the publication profile.
+
+Google News only wants articles from the **last two days** in the news sitemap. Older news stays in `/sitemap.xml` and `/feed.xml`.
 
 ### Attach gameplayer.com.au
 
