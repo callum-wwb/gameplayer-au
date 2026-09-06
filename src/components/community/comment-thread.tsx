@@ -29,7 +29,7 @@ export function CommentThread({
   allowScore: boolean;
 }) {
   const [comments, setComments] = useState<PublicComment[]>([]);
-  const [ready, setReady] = useState(true);
+  const [phase, setPhase] = useState<"loading" | "ready" | "unavailable">("loading");
   const [unavailable, setUnavailable] = useState("");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -49,14 +49,15 @@ export function CommentThread({
         };
         if (cancelled) return;
         if (response.status === 503 || data.code === "community_unavailable") {
-          setReady(false);
+          setPhase("unavailable");
           setUnavailable(data.message ?? "Community is almost ready.");
           return;
         }
         setComments(data.comments ?? []);
+        setPhase("ready");
       } catch {
         if (!cancelled) {
-          setReady(false);
+          setPhase("unavailable");
           setUnavailable("Community is almost ready.");
         }
       }
@@ -100,7 +101,7 @@ export function CommentThread({
       });
       const data = (await response.json()) as { message?: string; code?: string };
       if (response.status === 503 || data.code === "community_unavailable") {
-        setReady(false);
+        setPhase("unavailable");
         setUnavailable(data.message ?? "Community is almost ready.");
         return;
       }
@@ -142,7 +143,9 @@ export function CommentThread({
         ) : null}
       </div>
 
-      {!ready ? (
+      {phase === "loading" ? (
+        <p className="mt-6 text-sm text-muted-foreground">Checking the letters tray…</p>
+      ) : phase === "unavailable" ? (
         <Alert className="mt-6">
           <AlertTitle>Community is almost ready</AlertTitle>
           <AlertDescription>
