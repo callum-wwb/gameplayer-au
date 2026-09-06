@@ -122,11 +122,6 @@ export default async function ArticlePage({
 
       <p className="font-heading text-xs font-semibold tracking-[0.2em] text-primary uppercase">
         <Link href={typeMeta.href}>{typeMeta.label}</Link>
-        {article.type === "news" ? (
-          <span className="ml-3 rounded-full border border-primary/40 px-2 py-0.5 text-[10px] tracking-[0.18em]">
-            News
-          </span>
-        ) : null}
       </p>
       <h1 className="mt-3 max-w-4xl font-heading text-4xl font-bold tracking-tight text-balance sm:text-5xl">
         {article.title}
