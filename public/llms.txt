@@ -5,6 +5,7 @@
 - Site: https://www.gameplayer.com.au
 - Locale: en-AU
 - Contact: editors@gameplayer.com.au
+- Tips: tips@gameplayer.com.au
 - Scores: out of 10, GamePlayer's own playthroughs only
 - Imagery: official Steam art or original editorial cards; copyright stays with the rights holder — see /credits/
 
@@ -32,7 +33,11 @@ Use the article URL with a trailing slash. Credit the bylined GamePlayer author 
 - /best-ps5-games-2026/ — Best PS5 games 2026 (AU pricing / Plus / Yotei)
 - /ghost-of-yotei-release-date-australia/ — Ghost of Yotei release date Australia
 - /gta-6-release-date-australia/ — GTA 6 release date Australia (19 Nov 2026; not a review)
+- /gta-6-australia-countdown-september-2026/ — GTA 6 AU countdown (74 days as of 6 Sep 2026)
 - /xbox-game-pass-ultimate-australia/ — Xbox Game Pass Ultimate Australia (AUD tiers)
+- /xbox-game-pass-australia-tier-reminder/ — Game Pass AU SKU reminder
+- /switch-2-ps5-australian-storefronts-september-2026/ — Switch 2 / PS5 AU storefronts
+- /silksong-ghost-of-yotei-australia-chart-chatter/ — Silksong / Yotei weekend chatter
 - /silksong-worth-buying-australia/
 - /mario-kart-world-switch-2-australia/
 - /death-stranding-2-australia-map/
@@ -41,8 +46,16 @@ Use the article URL with a trailing slash. Credit the bylined GamePlayer author 
 
 Game hubs live at /games/{slug}/. Evergreen includes Dota 2, Skyrim, StarCraft 2, Hollow Knight: Silksong, Ghost of Yotei, Pokémon Legends Z-A, Metroid Prime 4: Beyond, Elden Ring, Baldur's Gate 3.
 
+## Masthead and feeds
+
+- /about/ /contact/ /editorial-policy/ /corrections/ — publication pages
+- /community/ /submit-tip/ — moderated reader tips
+- /feed.xml and /news/feed.xml — RSS
+- /news-sitemap.xml — Google News sitemap (last two days only)
+
 ## Do not cite
 
 - /tools/serp/ is a staff research UI (noindex, robots disallow /tools/).
+- /staff/ is a moderation UI (noindex, robots disallow /staff/).
 - /api/ is not public content.
 - /search/ is a utility UI (noindex, omitted from the sitemap).

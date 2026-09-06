@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { publisherLogoJsonLd } from "@/lib/brand";
 import type { CoverMedia } from "@/lib/media";
 import {
+  articleTypes,
   authors,
   siteConfig,
   absoluteUrl,
@@ -23,7 +25,7 @@ export function organizationJsonLd() {
     email: siteConfig.email,
     areaServed: "AU",
     inLanguage: siteConfig.language,
-    logo: absoluteUrl("/icon"),
+    logo: publisherLogoJsonLd(),
   };
 }
 
@@ -55,17 +57,28 @@ export function articleJsonLd(article: Article, media?: CoverMedia) {
   const url = canonicalUrl(`/${article.slug}`);
   const authorUrl = canonicalUrl(`/authors/${author.slug}`);
 
+  const schemaType =
+    article.type === "review"
+      ? "Review"
+      : article.type === "news"
+        ? "NewsArticle"
+        : "Article";
+
   const base = {
     "@context": "https://schema.org",
-    "@type": article.type === "review" ? "Review" : "Article",
+    "@type": schemaType,
     "@id": url,
     headline: article.title,
     description: article.excerpt,
     datePublished: article.publishedAt,
     dateModified: article.updatedAt ?? article.publishedAt,
-    mainEntityOfPage: url,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
     url,
     inLanguage: siteConfig.language,
+    articleSection: articleTypes[article.type].label,
     isPartOf: { "@id": websiteId },
     author: {
       "@type": "Person",
@@ -78,10 +91,7 @@ export function articleJsonLd(article: Article, media?: CoverMedia) {
       "@id": organizationId,
       "@type": "Organization",
       name: siteConfig.name,
-      logo: {
-        "@type": "ImageObject",
-        url: absoluteUrl("/icon"),
-      },
+      logo: publisherLogoJsonLd(),
     },
     image: media
       ? {
@@ -233,5 +243,41 @@ export function buildPageMetadata(input: {
       images: [image],
     },
     robots: input.robots,
+  };
+}
+
+export function articleCommentsJsonLd(input: {
+  articleUrl: string;
+  comments: { authorName: string; body: string; createdAt: string }[];
+}) {
+  const visible = input.comments.filter((comment) => comment.body.trim());
+  if (visible.length === 0) {
+    return null;
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Reader letters",
+    inLanguage: siteConfig.language,
+    numberOfItems: visible.length,
+    itemListElement: visible.map((comment, index) => ({
+      "@type": "Comment",
+      position: index + 1,
+      text: comment.body,
+      dateCreated: comment.createdAt,
+      author: {
+        "@type": "Person",
+        name: comment.authorName,
+      },
+      about: {
+        "@id": input.articleUrl,
+      },
+    })),
+    interactionStatistic: {
+      "@type": "InteractionCounter",
+      interactionType: "https://schema.org/CommentAction",
+      userInteractionCount: visible.length,
+    },
   };
 }

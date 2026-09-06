@@ -218,11 +218,45 @@ export function getRelatedArticles(article: Article, limit = 3) {
     .map((entry) => entry.candidate);
 }
 
+export function parseArticleDate(iso: string) {
+  if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) {
+    return new Date(`${iso}T00:00:00+10:00`);
+  }
+  return new Date(iso);
+}
+
 export function formatDate(iso: string) {
   return new Intl.DateTimeFormat("en-AU", {
     day: "numeric",
     month: "short",
     year: "numeric",
     timeZone: "Australia/Sydney",
-  }).format(new Date(iso));
+  }).format(parseArticleDate(iso));
+}
+
+export function formatDateLong(iso: string) {
+  return new Intl.DateTimeFormat("en-AU", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Australia/Sydney",
+  }).format(parseArticleDate(iso));
+}
+
+const NEWS_SITEMAP_WINDOW_MS = 2 * 24 * 60 * 60 * 1000;
+
+export function getNewsSitemapArticles(now = new Date()) {
+  const cutoff = now.getTime() - NEWS_SITEMAP_WINDOW_MS;
+  return getAllArticles().filter((article) => {
+    if (article.type !== "news") return false;
+    return parseArticleDate(article.publishedAt).getTime() >= cutoff;
+  });
+}
+
+export function getFeedArticles() {
+  const all = getAllArticles();
+  const news = all.filter((article) => article.type === "news");
+  const rest = all.filter((article) => article.type !== "news");
+  return [...news, ...rest];
 }

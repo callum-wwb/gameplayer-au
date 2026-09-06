@@ -7,6 +7,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "/",
     "/about/",
+    "/contact/",
+    "/editorial-policy/",
+    "/corrections/",
+    "/community/",
+    "/submit-tip/",
     "/credits/",
     "/games/",
     ...Object.values(authors).map((author) => `/authors/${author.slug}/`),
