@@ -12,10 +12,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { getEvergreenHubs } from "@/lib/games";
 import { platformNav, primaryNav } from "@/lib/site";
 
-export function MobileNav() {
+export type NavHub = { slug: string; shortTitle: string };
+
+export function MobileNav({ hubs }: { hubs: NavHub[] }) {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -59,27 +60,27 @@ export function MobileNav() {
               Game hubs
             </p>
             <nav className="flex flex-col gap-2" aria-label="Game hubs">
-            {getEvergreenHubs().map((game) => (
-              <Link
-                key={game.slug}
-                href={`/games/${game.slug}/`}
-                className="text-sm"
-              >
-                {game.shortTitle}
+              {hubs.map((game) => (
+                <Link
+                  key={game.slug}
+                  href={`/games/${game.slug}/`}
+                  className="text-sm"
+                >
+                  {game.shortTitle}
+                </Link>
+              ))}
+              <Link href="/games/" className="text-sm text-muted-foreground">
+                All game hubs
               </Link>
-            ))}
-            <Link href="/games/" className="text-sm text-muted-foreground">
-              All game hubs
-            </Link>
-            <Link href="/community/" className="text-sm text-muted-foreground">
-              Community
-            </Link>
-            <Link href="/about/" className="text-sm text-muted-foreground">
-              About
-            </Link>
-            <Link href="/credits/" className="text-sm text-muted-foreground">
-              Media credits
-            </Link>
+              <Link href="/community/" className="text-sm text-muted-foreground">
+                Community
+              </Link>
+              <Link href="/about/" className="text-sm text-muted-foreground">
+                About
+              </Link>
+              <Link href="/credits/" className="text-sm text-muted-foreground">
+                Media credits
+              </Link>
             </nav>
           </div>
         </div>

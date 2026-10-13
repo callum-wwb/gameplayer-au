@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { CoverArt } from "@/components/article/cover-art";
 import { ImageCredit } from "@/components/media/image-credit";
-import type { CoverMedia } from "@/lib/media";
+import type { CardCover } from "@/lib/article-card";
 import { cn } from "@/lib/utils";
 
 type CreditPlacement = "overlay" | "caption" | "both" | "compact" | "none";
 
 type GameCoverProps = {
-  media: CoverMedia;
+  media: CardCover;
   title?: string;
   kicker?: string;
   hue?: number;
@@ -48,14 +48,25 @@ export function GameCover({
         )}
       >
         {media.src ? (
-          <Image
-            src={media.src}
-            alt={media.alt}
-            fill
-            sizes={sizes}
-            priority={priority}
-            className="object-cover"
-          />
+          priority ? (
+            <Image
+              src={media.src}
+              alt={media.alt}
+              width={media.width}
+              height={media.height}
+              sizes={sizes}
+              priority
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <Image
+              src={media.src}
+              alt={media.alt}
+              fill
+              sizes={sizes}
+              className="object-cover"
+            />
+          )
         ) : (
           <CoverArt title="" hue={hue} className="absolute inset-0" />
         )}

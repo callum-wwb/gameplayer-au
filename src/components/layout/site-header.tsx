@@ -19,14 +19,18 @@ const classicIcons = {
 } as const;
 
 export function SiteHeader() {
-  const extraHubs = getEvergreenHubs().filter(
+  const hubs = getEvergreenHubs().map((game) => ({
+    slug: game.slug,
+    shortTitle: game.shortTitle,
+  }));
+  const extraHubs = hubs.filter(
     (game) => !originalHubs.some((hub) => hub.href.includes(game.slug)),
   );
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/80 bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
-        <MobileNav />
+        <MobileNav hubs={hubs} />
         <Link href="/" className="flex items-center gap-2">
           <SiteLogo />
           <span className="leading-tight">

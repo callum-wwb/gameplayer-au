@@ -2,19 +2,18 @@ import Link from "next/link";
 import { ScoreBadge } from "@/components/article/score-badge";
 import { GameCover } from "@/components/media/game-cover";
 import { Badge } from "@/components/ui/badge";
-import { resolveArticleCover } from "@/lib/article-covers";
 import { formatDate } from "@/lib/content";
+import type { ArticleCardModel } from "@/lib/article-card";
 import { articleTypes, platforms } from "@/lib/site";
-import type { Article } from "@/lib/types";
 
 export function ArticleCard({
   article,
   variant = "grid",
 }: {
-  article: Article;
+  article: ArticleCardModel;
   variant?: "grid" | "row" | "teaser";
 }) {
-  const media = resolveArticleCover(article);
+  const media = article.media;
 
   if (variant === "row") {
     return (
