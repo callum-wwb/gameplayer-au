@@ -43,7 +43,9 @@ export default function GamesIndexPage() {
       <p className="mt-3 max-w-2xl text-muted-foreground">
         Every hub image is either official Steam promotional art or an original
         GamePlayer editorial card. Credits sit on the image and belong to the
-        rights holder, not to us.{" "}
+        rights holder, not to us. New AU guides include Black Ops 7, NBA 2K26,
+        AFL 26, Kirby Air Riders, Battlefield 6, FC 26, Borderlands 4, and
+        Silent Hill f.{" "}
         <Link href="/credits/" className="text-primary hover:underline">
           Full media credits
         </Link>

@@ -4,6 +4,9 @@ import { canonicalUrl, siteConfig } from "@/lib/site";
 
 export const revalidate = 900;
 
+// Google News only wants URLs from the last 48 hours. getNewsSitemapArticles()
+// already applies that window; an empty <urlset> is valid when nothing is new.
+
 export function GET() {
   const articles = getNewsSitemapArticles();
   const urls = articles

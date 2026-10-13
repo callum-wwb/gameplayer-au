@@ -45,6 +45,7 @@ export function steamCover(input: {
   steamFile?: "capsule_616x353.jpg" | "header.jpg";
   width?: number;
   height?: number;
+  imageSource?: string;
 }): CoverMedia {
   const file = input.steamFile ?? "capsule_616x353.jpg";
   return {
@@ -56,7 +57,7 @@ export function steamCover(input: {
     publisher: input.publisher,
     developer: input.developer,
     creditLine: buildCreditLine(input.copyrightOwner, input.title),
-    imageSource: steamAssetUrl(input.steamAppId, file),
+    imageSource: input.imageSource ?? steamAssetUrl(input.steamAppId, file),
     licenseNote: LICENSE_STEAM,
   };
 }
