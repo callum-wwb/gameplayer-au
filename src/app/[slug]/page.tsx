@@ -10,6 +10,7 @@ import { JsonLd } from "@/components/json-ld";
 import { GameCover } from "@/components/media/game-cover";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { toArticleCard } from "@/lib/article-card";
 import { resolveArticleCover, resolveArticleGames } from "@/lib/article-covers";
 import { CommentThread } from "@/components/community/comment-thread";
 import {
@@ -246,7 +247,7 @@ export default async function ArticlePage({
           <h2 className="mb-5 font-heading text-2xl font-bold">Related</h2>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((item) => (
-              <ArticleCard key={item.slug} article={item} />
+              <ArticleCard key={item.slug} article={toArticleCard(item)} />
             ))}
           </div>
         </section>

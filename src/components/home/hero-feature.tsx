@@ -6,12 +6,11 @@ import { ScoreBadge } from "@/components/article/score-badge";
 import { GameCover } from "@/components/media/game-cover";
 import { ImageCredit } from "@/components/media/image-credit";
 import { Badge } from "@/components/ui/badge";
-import { resolveArticleCover } from "@/lib/article-covers";
+import type { ArticleCardModel } from "@/lib/article-card";
 import { articleTypes } from "@/lib/site";
-import type { Article } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-export function HeroFeature({ articles }: { articles: Article[] }) {
+export function HeroFeature({ articles }: { articles: ArticleCardModel[] }) {
   const [index, setIndex] = useState(0);
   const current = articles[index];
 
@@ -29,16 +28,17 @@ export function HeroFeature({ articles }: { articles: Article[] }) {
     return null;
   }
 
-  const currentMedia = resolveArticleCover(current);
-
   return (
     <section
       className="grid overflow-hidden rounded-2xl border border-border/70 lg:grid-cols-[minmax(0,1.7fr)_minmax(18rem,1fr)]"
       aria-label="Featured stories"
     >
-      <Link href={`/${current.slug}/`} className="relative block min-h-[280px]">
+      <Link
+        href={`/${current.slug}/`}
+        className="relative block aspect-16/9 min-h-[280px] w-full"
+      >
         <GameCover
-          media={currentMedia}
+          media={current.media}
           hue={current.hue}
           credit="none"
           fill
@@ -47,7 +47,7 @@ export function HeroFeature({ articles }: { articles: Article[] }) {
         />
         <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black via-black/45 to-black/10" />
         <div className="absolute inset-x-0 bottom-0 z-20">
-          <ImageCredit credit={currentMedia} overlay compact />
+          <ImageCredit credit={current.media} overlay compact />
         </div>
         <div className="absolute inset-x-0 bottom-0 z-10 p-5 pb-12 sm:p-7 sm:pb-14">
           <Badge>{articleTypes[current.type].label}</Badge>
@@ -72,7 +72,6 @@ export function HeroFeature({ articles }: { articles: Article[] }) {
       <div className="flex flex-col border-t border-border/70 bg-card/40 lg:border-t-0 lg:border-l">
         {articles.map((article, articleIndex) => {
           const active = articleIndex === index;
-          const media = resolveArticleCover(article);
           return (
             <button
               key={article.slug}
@@ -87,7 +86,7 @@ export function HeroFeature({ articles }: { articles: Article[] }) {
               aria-current={active ? "true" : undefined}
             >
               <GameCover
-                media={media}
+                media={article.media}
                 hue={article.hue}
                 credit="compact"
                 className="h-16 w-[4.5rem] shrink-0 rounded-md"
@@ -99,7 +98,7 @@ export function HeroFeature({ articles }: { articles: Article[] }) {
                 </span>
                 <span
                   className={cn(
-                    "mt-1 block line-clamp-2 font-heading text-sm font-semibold leading-snug",
+                    "mt-1 block line-clamp-2 font-heading text-sm leading-snug font-semibold",
                     active ? "text-primary" : "text-foreground",
                   )}
                 >

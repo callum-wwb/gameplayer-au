@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArticleCard } from "@/components/article/article-card";
 import { HeroFeature } from "@/components/home/hero-feature";
 import { Button } from "@/components/ui/button";
+import { toArticleCard } from "@/lib/article-card";
 import {
   getAllArticles,
   getHeroArticles,
@@ -18,18 +19,17 @@ export const metadata = buildPageMetadata({
 });
 
 export default function HomePage() {
-  const hero = getHeroArticles(4);
+  const hero = getHeroArticles(3).map(toArticleCard);
   const heroSlugs = new Set(hero.map((article) => article.slug));
   const latest = getAllArticles()
     .filter((article) => !heroSlugs.has(article.slug))
-    .slice(0, 8);
-  const latestLead = latest.slice(0, 4);
-  const latestMore = latest.slice(4, 8);
-  const recent = getRecentArticles(5);
-  const reviews = getRecentReviews(5);
-  const archive = getAllArticles()
-    .filter((article) => new Date(article.publishedAt).getFullYear() <= 2021)
-    .slice(0, 4);
+    .slice(0, 4)
+    .map(toArticleCard);
+  const recent = getRecentArticles(3)
+    .filter((article) => !heroSlugs.has(article.slug))
+    .slice(0, 3)
+    .map(toArticleCard);
+  const reviews = getRecentReviews(3).map(toArticleCard);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
@@ -45,7 +45,7 @@ export default function HomePage() {
           </Button>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {latestLead.map((article) => (
+          {latest.map((article) => (
             <ArticleCard key={article.slug} article={article} variant="teaser" />
           ))}
         </div>
@@ -71,6 +71,11 @@ export default function HomePage() {
               <ArticleCard key={article.slug} article={article} variant="row" />
             ))}
           </div>
+          <p className="mt-3">
+            <Link href="/reviews/" className="text-sm font-medium text-primary hover:underline">
+              All reviews »
+            </Link>
+          </p>
         </div>
         <div className="rounded-2xl border border-primary/25 bg-card/50 p-5">
           <h2 className="font-heading text-sm font-semibold tracking-[0.16em] text-primary uppercase">
@@ -87,34 +92,12 @@ export default function HomePage() {
             <Button asChild variant="outline">
               <Link href="/about/">About the desk</Link>
             </Button>
+            <Button asChild variant="outline">
+              <Link href="/classic/">From the archive</Link>
+            </Button>
           </div>
         </div>
       </section>
-
-      {latestMore.length > 0 ? (
-        <section className="mt-12">
-          <h2 className="mb-5 font-heading text-2xl font-bold">More from the desk</h2>
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {latestMore.map((article) => (
-              <ArticleCard key={article.slug} article={article} variant="teaser" />
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      {archive.length > 0 ? (
-        <section className="mt-12">
-          <h2 className="font-heading text-2xl font-bold">From the archive</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Classic GamePlayer slugs and listicles, rewritten for the new site.
-          </p>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {archive.map((article) => (
-              <ArticleCard key={article.slug} article={article} variant="teaser" />
-            ))}
-          </div>
-        </section>
-      ) : null}
     </div>
   );
 }

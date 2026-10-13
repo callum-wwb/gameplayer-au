@@ -1,5 +1,6 @@
 import { ArticleCard } from "@/components/article/article-card";
 import { JsonLd } from "@/components/json-ld";
+import { toArticleCard } from "@/lib/article-card";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "@/lib/seo";
 import type { Article } from "@/lib/types";
 
@@ -49,7 +50,7 @@ export function ArchivePage({
       ) : (
         <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {articles.map((article) => (
-            <ArticleCard key={article.slug} article={article} />
+            <ArticleCard key={article.slug} article={toArticleCard(article)} />
           ))}
         </div>
       )}

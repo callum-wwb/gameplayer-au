@@ -140,25 +140,8 @@ export function getFeaturedArticles(limit = 4) {
   return getAllArticles().slice(0, limit);
 }
 
-const ARCHIVE_HERO_SLUGS = [
-  "the-binding-of-isaac-review-explore-the-gruesome-world",
-  "heroes-of-loot-review-exciting-dungeon-crawler-for-mobile",
-  "top-4-worst-consoles-of-all-time",
-  "top-5-gaming-consoles-of-all-time",
-];
-
-export function getHeroArticles(limit = 4) {
-  const bySlug = new Map(getAllArticles().map((article) => [article.slug, article]));
-  const fromArchive = ARCHIVE_HERO_SLUGS.map((slug) => bySlug.get(slug)).filter(
-    (article): article is NonNullable<typeof article> => Boolean(article),
-  );
-  if (fromArchive.length >= limit) {
-    return fromArchive.slice(0, limit);
-  }
-  const extras = getFeaturedArticles(limit + fromArchive.length).filter(
-    (article) => !fromArchive.some((item) => item.slug === article.slug),
-  );
-  return [...fromArchive, ...extras].slice(0, limit);
+export function getHeroArticles(limit = 3) {
+  return getFeaturedArticles(limit);
 }
 
 export function getRecentArticles(limit = 6, excludeSlug?: string) {

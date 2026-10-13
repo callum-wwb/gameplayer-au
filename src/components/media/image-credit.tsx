@@ -1,8 +1,7 @@
-import type { ImageCreditMeta } from "@/lib/media";
 import { cn } from "@/lib/utils";
 
 type ImageCreditProps = {
-  credit: ImageCreditMeta;
+  credit: { copyrightOwner: string; creditLine: string };
   compact?: boolean;
   overlay?: boolean;
   className?: string;
