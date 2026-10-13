@@ -109,6 +109,66 @@ const nextConfig: NextConfig = {
         destination: "/xbox-game-pass-ultimate-australia/",
         permanent: true,
       },
+      {
+        source: "/black-ops-7",
+        destination: "/call-of-duty-black-ops-7-australia/",
+        permanent: true,
+      },
+      {
+        source: "/black-ops-7-australia",
+        destination: "/call-of-duty-black-ops-7-australia/",
+        permanent: true,
+      },
+      {
+        source: "/call-of-duty-black-ops-7",
+        destination: "/call-of-duty-black-ops-7-australia/",
+        permanent: true,
+      },
+      {
+        source: "/nba-2k26",
+        destination: "/nba-2k26-australia/",
+        permanent: true,
+      },
+      {
+        source: "/afl-26",
+        destination: "/afl-26-australia/",
+        permanent: true,
+      },
+      {
+        source: "/kirby-air-riders",
+        destination: "/kirby-air-riders-australia/",
+        permanent: true,
+      },
+      {
+        source: "/battlefield-6-vs-black-ops-7",
+        destination: "/battlefield-6-vs-black-ops-7-australia/",
+        permanent: true,
+      },
+      {
+        source: "/fc-26",
+        destination: "/ea-sports-fc-26-australia/",
+        permanent: true,
+      },
+      {
+        source: "/ea-fc-26",
+        destination: "/ea-sports-fc-26-australia/",
+        permanent: true,
+      },
+      {
+        source: "/ea-sports-fc-26",
+        destination: "/ea-sports-fc-26-australia/",
+        permanent: true,
+      },
+      {
+        source: "/borderlands-4",
+        destination: "/borderlands-4-australia/",
+        permanent: true,
+      },
+      {
+        source: "/silent-hill-f",
+        destination: "/silent-hill-f-australia/",
+        permanent: true,
+      },
     ];
   },
   images: {

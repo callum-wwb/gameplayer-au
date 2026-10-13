@@ -23,6 +23,5 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: [absoluteUrl("/sitemap.xml"), absoluteUrl("/news-sitemap.xml")],
-    host: absoluteUrl("/"),
   };
 }

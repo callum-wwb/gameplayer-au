@@ -48,6 +48,13 @@ export const STEAM_APP_IDS = {
   "clair-obscur-expedition-33": 1903340,
   "monster-hunter-wilds": 2246340,
   "death-stranding-2": 3280350,
+  "black-ops-7": 3606480,
+  "nba-2k26": 3472040,
+  "afl-26": 3468640,
+  "battlefield-6": 2807960,
+  "ea-sports-fc-26": 3405690,
+  "borderlands-4": 1285190,
+  "silent-hill-f": 2947440,
 } as const;
 
 export const gameHubs: GameHub[] = [
@@ -916,6 +923,423 @@ export const gameHubs: GameHub[] = [
       publisher: "Nintendo",
       developer: "Retro Studios",
       alt: "Original editorial artwork of rust dunes and distant industrial spires under a teal sky — no characters or Nintendo logos",
+    }),
+  },
+  {
+    slug: "black-ops-7",
+    title: "Call of Duty: Black Ops 7",
+    shortTitle: "Black Ops 7",
+    tagline: "Avalon, then the Dark Aether — AU till notes only",
+    description:
+      "Treyarch and Raven’s 2025 Black Ops. GamePlayer’s Australia guide covers platforms, Vault vs Standard, Game Pass, and storefront prices. Not a scored review.",
+    developer: "Treyarch / Raven Software",
+    publisher: "Activision Publishing, Inc.",
+    copyrightOwner: "Activision Publishing, Inc.",
+    platforms: ["PC", "PlayStation", "Xbox"],
+    released: "2025",
+    hue: 18,
+    evergreen: true,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["black-ops-7"],
+    aliases: [
+      "Black Ops 7",
+      "Call of Duty Black Ops 7",
+      "Call of Duty: Black Ops 7",
+      "BO7",
+    ],
+    seoTitle: "Black Ops 7 Australia: release date, price, editions, Game Pass",
+    seoDescription:
+      "Call of Duty: Black Ops 7 Australia guide — November 2025 launch, PS4/PS5/Xbox/PC, Standard vs Vault, Steam AU $109.95, Game Pass. Not a review.",
+    faq: [
+      {
+        question: "When did Black Ops 7 release in Australia?",
+        answer:
+          "Consoles unlocked mid-November 2025 (Xbox AU lists 14 November; PlayStation AU listed 13 November). Steam AU dated the PC build 21 November 2025. It is out now.",
+      },
+      {
+        question: "How much is Black Ops 7 in Australia?",
+        answer:
+          "Steam AU lists Standard at A$109.95 as of 13 October 2026. Xbox AU has listed Vault Edition from A$149.95. Live retailer stickers move — check PSN, Xbox, Steam, EB, and JB before you tap buy.",
+      },
+      {
+        question: "Is Black Ops 7 on Game Pass in Australia?",
+        answer:
+          "Xbox’s Australian Black Ops 7 page has pitched it as playable with Game Pass. Confirm the live SKU (Ultimate vs PC vs console) on xbox.com/en-AU — Activision benefits get rewritten.",
+      },
+    ],
+    image: steamCover({
+      slug: "black-ops-7",
+      title: "Call of Duty: Black Ops 7",
+      copyrightOwner: "Activision Publishing, Inc.",
+      publisher: "Activision Publishing, Inc.",
+      developer: "Treyarch / Raven Software",
+      steamAppId: STEAM_APP_IDS["black-ops-7"],
+      steamFile: "header.jpg",
+      imageSource:
+        "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3606480/d7041a15f572f7702d5f4bc97e498cd3e1cc62e2/header.jpg",
+    }),
+  },
+  {
+    slug: "nba-2k26",
+    title: "NBA 2K26",
+    shortTitle: "NBA 2K26",
+    tagline: "Leave no doubt — after you pick an edition",
+    description:
+      "Visual Concepts and 2K’s 2025 hoops annual. Australian editions, launch RRP versus today’s till, Switch vs Switch 2, and why this is not a scored review.",
+    developer: "Visual Concepts",
+    publisher: "2K",
+    copyrightOwner: "2K / Take-Two Interactive Software, Inc.",
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    released: "2025",
+    hue: 12,
+    evergreen: true,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["nba-2k26"],
+    aliases: ["NBA 2K26", "2K26", "NBA 2K 26"],
+    seoTitle: "NBA 2K26 Australia: editions, price, platforms",
+    seoDescription:
+      "NBA 2K26 Australia buyer guide — 5 September 2025 launch, Standard / Superstar / Leave No Doubt / SLAM editions, AU prices, platforms. Not a review.",
+    faq: [
+      {
+        question: "When did NBA 2K26 release in Australia?",
+        answer:
+          "Friday 5 September 2025 in Australian retail and console stores (Steam dated 4 September). Superstar and Leave No Doubt had a week of early access from 30 August 2025.",
+      },
+      {
+        question: "How much is NBA 2K26 in Australia?",
+        answer:
+          "Launch RRP for Standard was A$119.95 on current-gen and PC (Switch last-gen was cheaper). Steam AU lists Standard at A$99.95 and Superstar at A$159.95 as of 13 October 2026. Physical copies at EB/JB/Target often sit lower — check the live sticker.",
+      },
+      {
+        question: "What NBA 2K26 editions exist?",
+        answer:
+          "Standard, Superstar (VC, MyCAREER/MyTEAM extras, early access), the limited Leave No Doubt bundle at launch, and a later SLAM Edition on Steam AU. Leave No Doubt was a short sales window in September 2025.",
+      },
+    ],
+    image: steamCover({
+      slug: "nba-2k26",
+      title: "NBA 2K26",
+      copyrightOwner: "2K / Take-Two Interactive Software, Inc.",
+      publisher: "2K",
+      developer: "Visual Concepts",
+      steamAppId: STEAM_APP_IDS["nba-2k26"],
+      steamFile: "header.jpg",
+      imageSource:
+        "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3472040/f7e126add75c3b09779b44cd349be93d31b0a80b/header.jpg",
+    }),
+  },
+  {
+    slug: "afl-26",
+    title: "AFL 26",
+    shortTitle: "AFL 26",
+    tagline: "Big Ant’s footy, not an EA annual",
+    description:
+      "Melbourne-made AFL 26 from Big Ant and Nacon. Australian release dates, Switch 2 arrival, A$99.95 listings, and the platforms that actually shipped.",
+    developer: "Big Ant Studios",
+    publisher: "Nacon",
+    copyrightOwner: "Nacon / Australian Football League",
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    released: "2025",
+    hue: 42,
+    evergreen: true,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["afl-26"],
+    aliases: ["AFL 26", "AFL26", "AFL '26"],
+    seoTitle: "AFL 26 Australia: release date, price, Switch 2, platforms",
+    seoDescription:
+      "AFL 26 Australia guide — 8 May 2025 launch, Switch 2 on 31 March 2026, A$99.95, Big Ant / Nacon. Not an EA Sports game and not a scored review.",
+    faq: [
+      {
+        question: "When did AFL 26 release in Australia?",
+        answer:
+          "Thursday 8 May 2025 on PlayStation, Xbox, and PC (Steam dated 7 May). Nintendo Switch 2 followed on 31 March 2026.",
+      },
+      {
+        question: "How much is AFL 26 in Australia?",
+        answer:
+          "Steam AU and Xbox AU have listed Standard around A$99.95. PlayStation Store AU has sat at the same RRP. Confirm EB Games and JB Hi-Fi before you assume a sale.",
+      },
+      {
+        question: "Is AFL 26 an EA Sports game?",
+        answer:
+          "No. It is developed by Big Ant Studios in Melbourne and published by Nacon, under licence from the AFL. Do not confuse it with EA Sports FC 26.",
+      },
+    ],
+    image: steamCover({
+      slug: "afl-26",
+      title: "AFL 26",
+      copyrightOwner: "Nacon / Australian Football League",
+      publisher: "Nacon",
+      developer: "Big Ant Studios",
+      steamAppId: STEAM_APP_IDS["afl-26"],
+      steamFile: "header.jpg",
+      imageSource:
+        "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3468640/28212f89bf2c6257fe2f1f380bb31ac18f63897f/header.jpg",
+    }),
+  },
+  {
+    slug: "kirby-air-riders",
+    title: "Kirby Air Riders",
+    shortTitle: "Kirby Air Riders",
+    tagline: "Air Ride comes back — Switch 2 only",
+    description:
+      "Sakurai’s Air Ride successor on Nintendo Switch 2. Australian eShop pricing, City Trial notes, and why there is no PlayStation or Xbox version.",
+    developer: "Bandai Namco Studios / Sora Ltd.",
+    publisher: "Nintendo",
+    copyrightOwner: "Nintendo",
+    platforms: ["Nintendo Switch"],
+    released: "2025",
+    hue: 330,
+    evergreen: true,
+    listedHub: true,
+    kind: "game",
+    aliases: [
+      "Kirby Air Riders",
+      "Kirby Air Ride",
+      "Kirby Airriders",
+    ],
+    seoTitle: "Kirby Air Riders Australia: Switch 2 price, release, modes",
+    seoDescription:
+      "Kirby Air Riders Australia explainer — 20 November 2025 on Switch 2 only, A$109.95 eShop RRP, City Trial and Air Ride. Editorial cover; not a review.",
+    faq: [
+      {
+        question: "What platforms is Kirby Air Riders on?",
+        answer:
+          "Nintendo Switch 2 only. There is no PlayStation, Xbox, Steam, or original Switch version.",
+      },
+      {
+        question: "When did Kirby Air Riders release in Australia?",
+        answer:
+          "Thursday 20 November 2025, same worldwide calendar date. It is out now on eShop AU and at Australian retailers.",
+      },
+      {
+        question: "How much is Kirby Air Riders in Australia?",
+        answer:
+          "Nintendo’s Australian store and eShop list A$109.95 as the full sticker. Physical copies at Target, EB, JB, and Big W have already been cheaper — check the live listing.",
+      },
+    ],
+    image: editorialCover({
+      src: "/games/kirby-air-riders.jpg",
+      title: "Kirby Air Riders",
+      copyrightOwner: "Nintendo",
+      publisher: "Nintendo",
+      developer: "Bandai Namco Studios / Sora Ltd.",
+      alt: "Original editorial artwork of pastel floating islands and empty gold air-lanes — no characters or Nintendo logos",
+      width: 1280,
+      height: 720,
+      licenseNote: LICENSE_PLATFORM,
+    }),
+  },
+  {
+    slug: "battlefield-6",
+    title: "Battlefield 6",
+    shortTitle: "Battlefield 6",
+    tagline: "All-out warfare, Australian unlock included",
+    description:
+      "Battlefield Studios and EA’s 2025 reset. Australian launch timing, Standard vs Phantom, Steam AU pricing, and the comparison with Black Ops 7 — no scores.",
+    developer: "Battlefield Studios",
+    publisher: "Electronic Arts Inc.",
+    copyrightOwner: "Electronic Arts Inc.",
+    platforms: ["PC", "PlayStation", "Xbox"],
+    released: "2025",
+    hue: 28,
+    evergreen: true,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["battlefield-6"],
+    aliases: ["Battlefield 6", "BF6", "Battlefield VI"],
+    seoTitle: "Battlefield 6 Australia: price, editions, vs Black Ops 7",
+    seoDescription:
+      "Battlefield 6 Australia guide — 10 October 2025 launch (2am AEDT 11 Oct), Standard A$109.95, Phantom A$149.95, current-gen only. Not a review.",
+    faq: [
+      {
+        question: "When did Battlefield 6 release in Australia?",
+        answer:
+          "Worldwide lock was 10 October 2025, 8am PT. In Sydney that was 2:00am AEDT on Saturday 11 October 2025. It is out now on PS5, Xbox Series, and PC.",
+      },
+      {
+        question: "How much is Battlefield 6 in Australia?",
+        answer:
+          "Steam AU, PSN AU, and Xbox AU have listed Standard at A$109.95 and Phantom Edition at A$149.95 as of this filing. Day-one retail was often cheaper than RRP.",
+      },
+      {
+        question: "Is Battlefield 6 on last-gen consoles?",
+        answer:
+          "No. Current-gen and PC only: PlayStation 5, Xbox Series X/S, and Windows. There is no PS4 or Xbox One SKU.",
+      },
+    ],
+    image: steamCover({
+      slug: "battlefield-6",
+      title: "Battlefield 6",
+      copyrightOwner: "Electronic Arts Inc.",
+      publisher: "Electronic Arts Inc.",
+      developer: "Battlefield Studios",
+      steamAppId: STEAM_APP_IDS["battlefield-6"],
+      steamFile: "header.jpg",
+      imageSource:
+        "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2807960/c12d12ce3c7d217398d3fcad77427bfc9d57c570/header.jpg",
+    }),
+  },
+  {
+    slug: "ea-sports-fc-26",
+    title: "EA Sports FC 26",
+    shortTitle: "FC 26",
+    tagline: "The club is yours — read the SKU first",
+    description:
+      "EA’s 2025 football annual in Australia. Standard vs Ultimate vs World’s Game, Game Pass / EA Play, and why a September launch is not a scored review.",
+    developer: "EA Canada / EA Romania",
+    publisher: "Electronic Arts Inc.",
+    copyrightOwner: "Electronic Arts Inc.",
+    platforms: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    released: "2025",
+    hue: 145,
+    evergreen: true,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["ea-sports-fc-26"],
+    aliases: [
+      "EA Sports FC 26",
+      "EA SPORTS FC 26",
+      "FC 26",
+      "FIFA 26",
+    ],
+    seoTitle: "EA Sports FC 26 Australia: price, editions, Game Pass",
+    seoDescription:
+      "EA Sports FC 26 Australia guide — 26 September 2025 launch, Standard / Ultimate / World’s Game editions, AU prices, EA Play. Not a FIFA review score.",
+    faq: [
+      {
+        question: "When did EA Sports FC 26 release in Australia?",
+        answer:
+          "Standard landed 26 September 2025 worldwide (Xbox/PSN AU listed 25 September depending on store timezone). Ultimate Edition early access was the week before.",
+      },
+      {
+        question: "How much is FC 26 in Australia?",
+        answer:
+          "PlayStation Store AU still lists Standard at A$109.95. Steam AU has been cheaper post-launch (A$39 as of 13 October 2026). World’s Game Edition has listed around A$239.95. Check the live storefront.",
+      },
+      {
+        question: "Is FC 26 on Game Pass or EA Play?",
+        answer:
+          "EA Play (and Game Pass SKUs that include it) typically offer a short trial, not a full-year catalogue copy on day one. Confirm the live benefit on Xbox AU and EA’s site before you skip a purchase.",
+      },
+    ],
+    image: steamCover({
+      slug: "ea-sports-fc-26",
+      title: "EA Sports FC 26",
+      copyrightOwner: "Electronic Arts Inc.",
+      publisher: "Electronic Arts Inc.",
+      developer: "EA Canada / EA Romania",
+      steamAppId: STEAM_APP_IDS["ea-sports-fc-26"],
+      steamFile: "header.jpg",
+      imageSource:
+        "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3405690/2d96aa1b06e453cd62dae9029d412f19e61932c3/header.jpg",
+    }),
+  },
+  {
+    slug: "borderlands-4",
+    title: "Borderlands 4",
+    shortTitle: "Borderlands 4",
+    tagline: "Kairos, four hunters, three receipts",
+    description:
+      "Gearbox and 2K’s 2025 looter-shooter. Australian Standard / Deluxe / Super Deluxe prices, platforms, and the DLC maths — not a review score.",
+    developer: "Gearbox Software",
+    publisher: "2K",
+    copyrightOwner: "2K / Take-Two Interactive Software, Inc. / Gearbox Software",
+    platforms: ["PC", "PlayStation", "Xbox"],
+    released: "2025",
+    hue: 48,
+    evergreen: true,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["borderlands-4"],
+    aliases: ["Borderlands 4", "BL4"],
+    seoTitle: "Borderlands 4 Australia: price, editions, platforms",
+    seoDescription:
+      "Borderlands 4 Australia guide — 11 September 2025, Standard A$109.95, Deluxe A$159.95, Super Deluxe A$199.95. Not a scored review.",
+    faq: [
+      {
+        question: "When did Borderlands 4 release in Australia?",
+        answer:
+          "Thursday 11 September 2025 on PlayStation 5, Xbox Series X/S, and PC (Steam, Epic). It is out now.",
+      },
+      {
+        question: "How much is Borderlands 4 in Australia?",
+        answer:
+          "Steam AU lists Standard A$109.95, Deluxe A$159.95, Super Deluxe A$199.95 as of 13 October 2026. Those match the launch RRP pattern reported when pre-orders opened.",
+      },
+      {
+        question: "Is Borderlands 4 on last-gen or Switch?",
+        answer:
+          "Day one was PS5, Xbox Series, and PC. There is no official PS4, Xbox One, or Nintendo Switch SKU as of this filing.",
+      },
+    ],
+    image: steamCover({
+      slug: "borderlands-4",
+      title: "Borderlands 4",
+      copyrightOwner: "2K / Take-Two Interactive Software, Inc. / Gearbox Software",
+      publisher: "2K",
+      developer: "Gearbox Software",
+      steamAppId: STEAM_APP_IDS["borderlands-4"],
+      steamFile: "header.jpg",
+      imageSource:
+        "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1285190/986a88d1b0e1420b00183def2a7034508353afa3/header.jpg",
+    }),
+  },
+  {
+    slug: "silent-hill-f",
+    title: "Silent Hill f",
+    shortTitle: "Silent Hill f",
+    tagline: "Fog in 1960s Japan — calendar, not a score",
+    description:
+      "NeoBards and Konami’s Silent Hill f. Australian platforms, Steam AU pricing, Deluxe extras, and why GamePlayer is not posting a review score from the marketing.",
+    developer: "NeoBards Entertainment Ltd.",
+    publisher: "Konami Digital Entertainment",
+    copyrightOwner: "Konami Digital Entertainment",
+    platforms: ["PC", "PlayStation", "Xbox"],
+    released: "2025",
+    hue: 350,
+    evergreen: false,
+    listedHub: true,
+    kind: "game",
+    steamAppId: STEAM_APP_IDS["silent-hill-f"],
+    aliases: [
+      "Silent Hill f",
+      "Silent Hill F",
+      "SILENT HILL f",
+    ],
+    seoTitle: "Silent Hill f Australia: release date, price, platforms",
+    seoDescription:
+      "Silent Hill f Australia guide — 25 September 2025, PS5 / Xbox Series / PC, Steam AU A$99.94. Buyer notes only; not a scored horror review.",
+    faq: [
+      {
+        question: "When did Silent Hill f release in Australia?",
+        answer:
+          "25 September 2025 worldwide (Steam storefronts also show 24 September depending on timezone). It is out now on PS5, Xbox Series, and PC.",
+      },
+      {
+        question: "How much is Silent Hill f in Australia?",
+        answer:
+          "Steam AU lists Standard at A$99.94 and Digital Deluxe at A$114.95 as of 13 October 2026. Console storefronts move independently — check PSN AU and Xbox AU.",
+      },
+      {
+        question: "Is Silent Hill f on last-gen consoles?",
+        answer:
+          "No. Current-gen and PC only as of this filing.",
+      },
+    ],
+    image: steamCover({
+      slug: "silent-hill-f",
+      title: "Silent Hill f",
+      copyrightOwner: "Konami Digital Entertainment",
+      publisher: "Konami Digital Entertainment",
+      developer: "NeoBards Entertainment Ltd.",
+      steamAppId: STEAM_APP_IDS["silent-hill-f"],
+      steamFile: "header.jpg",
+      imageSource:
+        "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2947440/7e5d923ac622bd1775ebc9b5d4b5b0a24bf5ed40/header.jpg",
     }),
   },
 ];
