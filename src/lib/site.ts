@@ -213,6 +213,12 @@ export const authors = {
     role: "Preview lead",
     bio: "Hands-on previews and first-hour reports. Will travel for a good vertical slice.",
   },
+  "worldwide-backlinks": {
+    slug: "worldwide-backlinks",
+    name: "Worldwide Backlinks",
+    role: "Guest post",
+    bio: "Guest contributor. Worldwide Backlinks is a link building agency offering guest posts, niche edits and iGaming link building.",
+  },
 } as const;
 
 export type AuthorSlug = keyof typeof authors;
